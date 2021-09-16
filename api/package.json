@@ -1,5 +1,5 @@
 {
-  "name": "goal-tracker",
+  "name": "goal-tracker-api",
   "version": "1.0.0",
   "description": "Short-term goal tracker based on the Self Journal",
   "main": "app.js",
