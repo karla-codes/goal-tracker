@@ -1,8 +1,9 @@
 const express = require('express');
 const router = require('./routes');
 const mongoose = require('mongoose');
-const mongoDB =
-  'mongodb+srv://admin:C3kvm7k9EUhDrdXl@goal-tracker.zfcew.mongodb.net/goal-tracker-db?retryWrites=true&w=majority';
+
+const mongoPass = require('./secrets');
+const mongoDB = `mongodb+srv://admin:${mongoPass}@goal-tracker.zfcew.mongodb.net/goal-tracker-db?retryWrites=true&w=majority`;
 const cors = require('cors');
 
 const app = express();
