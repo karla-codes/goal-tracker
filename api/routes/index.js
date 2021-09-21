@@ -19,7 +19,6 @@ function asyncHandler(cb) {
 // USER ROUTES //
 
 // GET user
-
 router.get(
   '/users',
   asyncHandler(async (req, res) => {
@@ -71,9 +70,12 @@ router.get(
 router.get(
   '/goals/:goalId',
   asyncHandler(async (req, res, next) => {
-    const goal = await Goal.findOne({ _id: req.params.goalId });
-    if (goal) {
+    const goalId = req.params.goalId;
+    if (goalId.length === 24) {
+      const goal = await Goal.findById(goalId);
       res.status(200).json(goal);
+    } else {
+      res.status(404).json({ message: 'Page not found' });
     }
   })
 );
@@ -96,8 +98,43 @@ router.post(
     }
   })
 );
+
 // PUT(update) goal
+router.put(
+  '/goals/:goalId',
+  asyncHandler(async (req, res, next) => {
+    const goalId = req.params.goalId;
+    const updatedGoal = req.body;
+    console.log(updatedGoal);
+    if (goalId.length === 24) {
+      const currentGoal = await Goal.findById(goalId);
+      if (currentGoal) {
+        const goal = await currentGoal.updateOne(updatedGoal);
+        console.log(goal);
+        res.status(204).end();
+      }
+    } else {
+      res.status(404).json({ message: 'Page not found' });
+    }
+  })
+);
+
 // DELETE goal
+router.delete(
+  '/goals/:goalId',
+  asyncHandler(async (req, res, next) => {
+    const goalId = req.params.goalId;
+    if (goalId.length === 24) {
+      const goal = await Goal.findById(goalId);
+      if (goal) {
+        goal.remove();
+        res.status(204).end();
+      }
+    } else {
+      res.status(404).json({ message: 'Page not found' });
+    }
+  })
+);
 
 // JOURNAL ROUTES //
 
@@ -107,8 +144,3 @@ router.post(
 // DELETE journal entry
 
 module.exports = router;
-
-// set error status code to 400 and return error w/ next()
-// const err = new Error('All fields are required');
-// err.status = 400;
-// next(err);
