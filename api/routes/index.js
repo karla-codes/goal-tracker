@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcrypt');
 const User = require('../models/user');
+const Goal = require('../models/goal');
 
 // async/await handler function to wrap each route
 function asyncHandler(cb) {
@@ -18,13 +19,15 @@ function asyncHandler(cb) {
 // USER ROUTES //
 
 // GET user
+
 router.get(
   '/users',
   asyncHandler(async (req, res) => {
     // wait for response from database
+    // return user information, minus password
     const user = await User.findOne({ email: req.body.email }).select(
       '-password'
-    ); // return user information, minus password
+    );
     res.status(200).json(user);
   })
 );
@@ -38,7 +41,6 @@ router.post(
       // hash user password
       bcrypt.hash(newUser.password, 10, (err, hash) => {
         newUser.password = hash;
-        console.log(newUser.password);
         // add new user to database
         User.create(newUser, (err, user) => {
           if (err) {
@@ -46,19 +48,54 @@ router.post(
           } else {
             // return 201 status code
             console.log('New user was successfully created!');
-            res.status(201).location('/').end();
+            res.status(201).end();
           }
         });
       });
     }
   })
 );
-// PUT(update) existing user
 
 // GOAL ROUTES //
 
 // GET goals related to user
+router.get(
+  '/goals',
+  asyncHandler(async (req, res, next) => {
+    const goals = await Goal.find({ userId: req.body.userId });
+    res.status(200).json(goals);
+  })
+);
+
+// GET single goal
+router.get(
+  '/goals/:goalId',
+  asyncHandler(async (req, res, next) => {
+    const goal = await Goal.findOne({ _id: req.params.goalId });
+    if (goal) {
+      res.status(200).json(goal);
+    }
+  })
+);
+
 // POST new goal
+router.post(
+  '/goals',
+  asyncHandler(async (req, res, next) => {
+    const newGoal = await req.body;
+    if (newGoal) {
+      newGoal.user = req.body.userId;
+      Goal.create(newGoal, (err, goal) => {
+        if (err) {
+          return next(err);
+        } else {
+          console.log('New goal was successfully created!');
+          res.status(201).json(goal);
+        }
+      });
+    }
+  })
+);
 // PUT(update) goal
 // DELETE goal
 
