@@ -7,7 +7,7 @@ const mongoDB = `mongodb+srv://admin:${mongoPass}@goal-tracker.zfcew.mongodb.net
 const cors = require('cors');
 
 const app = express();
-const port = 3000;
+const port = 5000;
 
 // mongodb connection
 mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
