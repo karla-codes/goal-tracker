@@ -1,0 +1,81 @@
+body {
+  font-family: 'Work Sans', sans-serif;
+  font-size: 16px;
+  width: 90%;
+  margin: 2rem auto 0;
+  box-sizing: border-box;
+}
+
+/*********************************************************************
+Main Navigation
+*********************************************************************/
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+header h1 {
+  font-size: 1.875rem;
+  width: 35%;
+}
+
+header nav {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+header nav a {
+  margin-top: 10px;
+}
+
+/*********************************************************************
+Login/Sign Up Form
+*********************************************************************/
+
+.form-wrapper {
+  border: 1.5px solid rgb(123, 123, 123);
+  border-radius: 10px;
+  width: 85%;
+  margin: 2rem auto 0;
+  padding: 1rem;
+}
+
+.form-wrapper h1 {
+  font-size: 1.5rem;
+  text-align: left;
+}
+
+.form-wrapper form {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  margin: 0 auto;
+}
+
+.form-wrapper form label {
+  margin-bottom: 8px;
+  text-align: left;
+}
+
+.form-wrapper form input {
+  height: 1.6rem;
+  margin-bottom: 1rem;
+  padding: 5px;
+  border: 1px solid black;
+}
+
+.form-wrapper form button {
+  font-size: 1.5rem;
+  height: 3.625rem;
+}
+
+.form-wrapper p {
+  font-size: 14px;
+  text-align: center;
+  width: 90%;
+  margin: 1rem auto;
+}
