@@ -9,7 +9,6 @@ function Form(props) {
       <button className="button" type="submit">
         {buttonText}
       </button>
-      {cancelButton ? cancelButton : ''}
     </form>
   );
 }
