@@ -1,19 +1,26 @@
 import React from 'react';
 
+import Goal from './Goal';
+
 function Dashboard() {
   return (
     <main>
-      <header>
+      <div className="dashboard-info">
         <div>
-          <h1>13-Week Goals</h1>
+          <h2>Goal Dashboard</h2>
           <p>
             Select a goal to view/edit goal details and a dedicated journal to
             document your progress.
           </p>
         </div>
-        <a href="">+ Create New Goal</a>
-      </header>
+        <a href="">Create New Goal</a>
+      </div>
       {/* Add goals here */}
+      <div className="goal-container">
+        <Goal />
+        <Goal />
+        <Goal />
+      </div>
     </main>
   );
 }
