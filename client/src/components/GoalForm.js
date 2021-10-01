@@ -1,5 +1,5 @@
 import React from 'react';
-import Goal from './Goal';
+// import Goal from './Goal';
 
 function GoalForm(props) {
   const { headerText } = props;
