@@ -25,12 +25,10 @@ function UserSignUp() {
               <input name="password" id="password" type="password"></input>
             </>
           )}
-          cancelButton={
-            <button className="button cancelButton" onClick={cancel}>
-              Cancel
-            </button>
-          }
         />
+        <p>
+          Already have an account?Login <a href="">here</a>!
+        </p>
       </div>
     </main>
   );
