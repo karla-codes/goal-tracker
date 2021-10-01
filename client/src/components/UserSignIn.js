@@ -5,10 +5,10 @@ function UserSignIn() {
   return (
     <main>
       <div className="form-wrapper">
-        <h1>Sign In</h1>
+        <h1>Login</h1>
         <Form
           submit=""
-          buttonText="Sign In"
+          buttonText="Login"
           elements={() => (
             <>
               <label htmlFor="email">Email:</label>
@@ -18,11 +18,9 @@ function UserSignIn() {
             </>
           )}
         />
-        <div>
-          <p>
-            Don't have an account? Sign up <a href="">here</a>!
-          </p>
-        </div>
+        <p>
+          Don't have an account? Sign up <a href="">here</a>!
+        </p>
       </div>
     </main>
   );
