@@ -1,7 +1,7 @@
 import React from 'react';
 
 function Form(props) {
-  const { elements, cancelButton, submit, buttonText } = props;
+  const { elements, submit, buttonText } = props;
 
   return (
     <form onSubmit={submit}>
