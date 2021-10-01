@@ -1,17 +1,13 @@
 import React from 'react';
+import JournalPage from './JournalPage';
+import DetailNav from './DetailNav';
 
 function GoalDetail() {
   return (
     <main>
-      <div className="goal-nav">
-        <a href="">Back to Goals</a>
-        <div>
-          <a href="">Edit Goal Details</a>
-          <a href="">Delete Goal</a>
-        </div>
-      </div>
+      <DetailNav />
       <div className="goal-details">
-        <div className="goal">
+        <div className="goal-text">
           <h1>Goal</h1>
           <p>This is where the goal goes</p>
           <span>Tag</span>
@@ -36,7 +32,9 @@ function GoalDetail() {
           <h2>Journal</h2>
           <a href="">Create New Page</a>
         </div>
-        <div className="journal-pages">{/* <JournalEntry /> */}</div>
+        <div className="journal-pages">
+          <JournalPage />
+        </div>
       </div>
     </main>
   );
