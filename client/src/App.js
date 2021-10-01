@@ -1,3 +1,5 @@
+import React from 'react';
+import { BrowserRouter, Route, Switch, Link } from 'react-router-dom';
 import './style.css';
 
 import Navigation from './components/Navigation';
@@ -11,15 +13,21 @@ import CreateGoal from './components/CreateGoal';
 
 function App() {
   return (
-    <>
+    <BrowserRouter>
       <Navigation />
-      {/* <Dashboard /> */}
-      {/* <JournalPageDetail /> */}
-      {/* <GoalDetail /> */}
-      <UserSignIn />
-      {/* <UserSignUp /> */}
-      {/* <EditGoal /> */}
-    </>
+      <Switch>
+        <Route exact path="/" component={UserSignIn} />
+        <Route path="/signup" component={UserSignUp} />
+        <Route path="/goals/new" component={CreateGoal} />
+        <Route
+          path="/goals/:id/journal/:pageId"
+          component={JournalPageDetail}
+        />
+        <Route path="/goals/:id/edit" component={EditGoal} />
+        <Route path="/goals/:id" component={GoalDetail} />
+        <Route path="/goals" component={Dashboard} />
+      </Switch>
+    </BrowserRouter>
   );
 }
 
