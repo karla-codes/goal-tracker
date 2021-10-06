@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import Goal from './Goal';
 
@@ -13,7 +14,7 @@ function Dashboard() {
             document your progress.
           </p>
         </div>
-        <a href="">Create New Goal</a>
+        <Link to="/goals/new">Create New Goal</Link>
       </div>
       {/* Add goals here */}
       <div className="goal-container">

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 // import Goal from './Goal';
 
 function GoalForm(props) {
@@ -90,7 +91,7 @@ function GoalForm(props) {
           </p>
           <p>
             <button>Submit</button>
-            <button>Cancel</button>
+            <Link to="">Cancel</Link>
           </p>
         </form>
       </div>

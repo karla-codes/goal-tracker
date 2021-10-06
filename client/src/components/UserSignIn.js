@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Form from './Form';
 
 function UserSignIn() {
@@ -19,7 +20,7 @@ function UserSignIn() {
           )}
         />
         <p>
-          Don't have an account? Sign up <a href="">here</a>!
+          Don't have an account? Sign up <Link to="/signup">here</Link>!
         </p>
       </div>
     </main>

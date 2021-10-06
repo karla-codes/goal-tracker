@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 import Form from './Form';
 
@@ -27,7 +28,7 @@ function UserSignUp() {
           )}
         />
         <p>
-          Already have an account?Login <a href="">here</a>!
+          Already have an account?Login <Link to="/">here</Link>!
         </p>
       </div>
     </main>

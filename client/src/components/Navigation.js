@@ -1,10 +1,13 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 function Navigation(props) {
   // const user
   return (
     <header>
-      <h1>Goal Tracker</h1>
+      <Link to="/goals" className="logo">
+        Goal Tracker
+      </Link>
       <nav>
         {/* If user is logged in */}
         <span>Welcome, Person!</span>
