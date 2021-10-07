@@ -38,15 +38,15 @@ router.post(
     const errors = [];
     // validate form data
     if (!newUser.fullName) {
-      errors.push('Please provide a value for "Name"');
+      errors.push("Please provide a value for 'Name'");
     }
 
     if (!newUser.email) {
-      errors.push('Please provide a value for "Email"');
+      errors.push("Please provide a value for 'Email'");
     }
 
     if (!newUser.password) {
-      errors.push('Please provide a value for "Password"');
+      errors.push("Please provide a value for 'Password'");
     }
 
     if (errors.length > 0) {
