@@ -1,12 +1,12 @@
 'use strict';
-const { User } = require('../models');
+const User = require('../models/user');
 
 const auth = require('basic-auth');
 const bcrypt = require('bcrypt');
 
 exports.authenticateUser = async (req, res, next) => {
   let message;
-  // Parse user's credentials from Authoriation header
+  // Parse user's credentials from Authorization header
   const credentials = auth(req);
   // If the user's credentials are available:
   // - attempt to retrieve user from database by their email
