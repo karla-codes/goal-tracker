@@ -3,6 +3,7 @@ const router = express.Router();
 const bcrypt = require('bcrypt');
 const User = require('../models/user');
 const Goal = require('../models/goal');
+const { authenticateUser } = require('../middleware/auth-user');
 
 // async/await handler function to wrap each route
 function asyncHandler(cb) {
@@ -21,13 +22,11 @@ function asyncHandler(cb) {
 // GET user
 router.get(
   '/users',
+  authenticateUser,
   asyncHandler(async (req, res) => {
-    // wait for response from database
-    // return user information, minus password
-    const user = await User.findOne({ email: req.body.email }).select(
-      '-password'
-    );
-    res.status(200).json(user);
+    const user = req.currentUser;
+
+    res.status(200).json({ name: user.fullName, email: user.email });
   })
 );
 
@@ -36,6 +35,24 @@ router.post(
   '/users',
   asyncHandler(async (req, res, next) => {
     const newUser = await req.body;
+    const errors = [];
+    // validate form data
+    if (!newUser.fullName) {
+      errors.push('Please provide a value for "Name"');
+    }
+
+    if (!newUser.email) {
+      errors.push('Please provide a value for "Email"');
+    }
+
+    if (!newUser.password) {
+      errors.push('Please provide a value for "Password"');
+    }
+
+    if (errors.length > 0) {
+      res.status(400).json({ errors });
+    }
+
     if (newUser.password) {
       // hash user password
       bcrypt.hash(newUser.password, 10, (err, hash) => {
