@@ -63,6 +63,7 @@ router.post(
             return next(err);
           } else {
             // return 201 status code
+            // login user after creating account
             console.log('New user was successfully created!');
             res.status(201).end();
           }
@@ -77,8 +78,9 @@ router.post(
 // GET goals related to user
 router.get(
   '/goals',
+  authenticateUser,
   asyncHandler(async (req, res, next) => {
-    const goals = await Goal.find({ userId: req.body.userId });
+    const goals = await Goal.find({ author: { _id: req.currentUser._id } });
     res.status(200).json(goals);
   })
 );
@@ -86,6 +88,7 @@ router.get(
 // GET single goal
 router.get(
   '/goals/:goalId',
+  authenticateUser,
   asyncHandler(async (req, res, next) => {
     const goalId = req.params.goalId;
     if (goalId.length === 24) {
@@ -100,10 +103,12 @@ router.get(
 // POST new goal
 router.post(
   '/goals',
+  authenticateUser,
   asyncHandler(async (req, res, next) => {
     const newGoal = await req.body;
+    const currentUser = await req.currentUser;
     if (newGoal) {
-      newGoal.user = req.body.userId;
+      newGoal.author = currentUser._id;
       Goal.create(newGoal, (err, goal) => {
         if (err) {
           return next(err);
@@ -119,6 +124,7 @@ router.post(
 // PUT(update) goal
 router.put(
   '/goals/:goalId',
+  authenticateUser,
   asyncHandler(async (req, res, next) => {
     const goalId = req.params.goalId;
     const updatedGoal = req.body;
