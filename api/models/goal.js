@@ -22,9 +22,7 @@ const GoalSchema = new mongoose.Schema({
     type: String,
     required: [true, 'Please select a category'],
   },
-  userId: {
-    type: String,
-  },
+  author: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
 });
 
 const Goal = mongoose.model('Goal', GoalSchema);

@@ -16,6 +16,7 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: [true, 'A password is required'],
   },
+  goals: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Goal' }],
 });
 
 const User = mongoose.model('User', UserSchema);
