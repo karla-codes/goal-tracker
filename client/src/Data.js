@@ -1,6 +1,6 @@
 // this is the api request helper
 
-import { options } from "../../api/routes";
+import { options } from '../../api/routes';
 
 function Data() {
   function api(
@@ -10,13 +10,13 @@ function Data() {
     requiresAuth = false,
     credentials = null
   ) {
-    const url = "http://localhost:5000/api" + path;
+    const url = 'http://localhost:5000/api' + path;
 
     // api request config
     const options = {
       method,
       headers: {
-        "Content-Type": "application/json; charset=utf-8",
+        'Content-Type': 'application/json; charset=utf-8',
       },
     };
 
@@ -30,7 +30,7 @@ function Data() {
         `${credentials.email}:${credentials.password}`
       );
 
-      options.headers["Authorization"] = `Basic ${encodedCredentials}`;
+      options.headers['Authorization'] = `Basic ${encodedCredentials}`;
     }
 
     return fetch(path, options);
@@ -40,7 +40,7 @@ function Data() {
 
   // GET user
   async function getUser(email, password) {
-    const user = await api("/users", "GET", null, true, { email, password });
+    const user = await api('/users', 'GET', null, true, { email, password });
 
     if (user.status === 200) {
       return user.json().then(data => data);
@@ -50,6 +50,20 @@ function Data() {
   }
 
   // POST (create) user
+  async function createUser(newUser) {
+    const response = await api('/users', 'POST', newUser);
+
+    if (response.status === 201) {
+      console.log(
+        `A new account was successfully created for ${newUser.fullName}`
+      );
+      return [];
+    } else if (response.status === 400) {
+      return response.json().then(data => {
+        return data.errors;
+      });
+    }
+  }
 
   // GET user goals
 
