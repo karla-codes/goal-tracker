@@ -145,6 +145,7 @@ router.put(
 // DELETE goal
 router.delete(
   '/goals/:goalId',
+  authenticateUser,
   asyncHandler(async (req, res, next) => {
     const goalId = req.params.goalId;
     if (goalId.length === 24) {
@@ -162,6 +163,9 @@ router.delete(
 // JOURNAL ROUTES //
 
 // GET journal entries related to user
+// router.get('/journal', asyncHandler(req, res, next) => {
+//   const journal = await
+// })
 // POST new journal entry
 // PUT journal entry
 // DELETE journal entry
