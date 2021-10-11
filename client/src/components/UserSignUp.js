@@ -8,6 +8,18 @@ function UserSignUp() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  // track state for the following:
+  // - form values (email, password, fullName)
+  // - form errors
+  //
+
+  // Add form validation
+  // Check if:
+  // 1. email address is correct format (regex)
+  // 2. email input is empty
+  // 3. password input is empty
+  // 4. password has min 8 characters (regex)
+
   return (
     <main>
       <div className="form-wrapper">
@@ -33,6 +45,8 @@ function UserSignUp() {
       </div>
     </main>
   );
+
+  // handle input change
 
   function submit() {
     // save input values into object
