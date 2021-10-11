@@ -66,6 +66,16 @@ function Data() {
   }
 
   // GET user goals
+  async function getGoals(user) {
+    const goals = await api('/goals', 'GET', null, true, {
+      email: user.email,
+      password: user.password,
+    });
+
+    if (goals.status === 200) {
+      return goals.json().then(data => data);
+    }
+  }
 
   // POST (create) goal
 
