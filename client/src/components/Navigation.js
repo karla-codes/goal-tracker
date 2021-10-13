@@ -2,7 +2,11 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 function Navigation(props) {
-  // const user
+  const { context } = props;
+  const { authUser } = context;
+  // check if an authorized user exists
+  // if true, set welcome message in nav
+  console.log(authUser);
   return (
     <header>
       <Link to="/goals" className="logo">
@@ -10,8 +14,8 @@ function Navigation(props) {
       </Link>
       <nav>
         {/* If user is logged in */}
-        <span>Welcome, Person!</span>
-        <a href="">Sign Out</a>
+        {authUser ? <span>Welcome, {authUser.name}!</span> : ''}
+        {authUser ? <Link to="/signout">Sign Out</Link> : ''}
       </nav>
     </header>
   );
