@@ -1,13 +1,15 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import Form from "./Form";
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import Form from './Form';
 
-function UserSignIn() {
+function UserSignIn(props) {
   // track state for:
   // - email
   // - password
-  const [formValues, setFormValues] = useState({ email: "", password: "" });
+  const [formValues, setFormValues] = useState({ email: '', password: '' });
   const [errors, setErrors] = useState({});
+
+  const { context } = props;
 
   // Add form validation
   // Check if:
@@ -20,15 +22,15 @@ function UserSignIn() {
     const regex = /[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+/;
 
     if (!values.email) {
-      errors.email = "Cannot leave blank";
+      errors.email = 'Cannot leave blank';
     } else if (!regex.test(values.email)) {
-      errors.email = "Invalid email format";
+      errors.email = 'Invalid email format';
     }
 
     if (!values.password) {
-      errors.password = "Cannot leave blank";
+      errors.password = 'Cannot leave blank';
     } else if (values.password.length < 8) {
-      errors.password = "Password needs to be more than 8 characters long";
+      errors.password = 'Password needs to be more than 8 characters long';
     }
 
     return errors;
@@ -46,7 +48,22 @@ function UserSignIn() {
 
   function handleSubmit(e) {
     e.preventDefault();
+    const { from } = props.history.state || { from: '/goals' };
     setErrors(formValidation(formValues));
+    console.log(formValues);
+    // run sign in functionality with API helper
+    // - GET user request
+    // - set cookies
+    context.actions
+      .signIn(formValues)
+      .then(user => {
+        if (user === null) {
+          setErrors({ fetch: 'Sign in was unsuccessfull' });
+        } else {
+          props.history.push(from);
+        }
+      })
+      .catch(err => console.log(err));
   }
 
   return (
@@ -65,7 +82,7 @@ function UserSignIn() {
                 type="email"
                 onChange={handleChange}
               ></input>
-              {errors.email}
+              {errors.email && <span>{errors.email}</span>}
               <label htmlFor="password">Password:</label>
               <input
                 name="password"
@@ -73,6 +90,7 @@ function UserSignIn() {
                 type="password"
                 onChange={handleChange}
               ></input>
+              {errors.password && <span>{errors.password}</span>}
             </>
           )}
         />
