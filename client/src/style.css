@@ -38,6 +38,11 @@ img {
   height: auto;
 }
 
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
 body {
   font-family: 'Work Sans', sans-serif;
   width: 90%;
@@ -58,7 +63,7 @@ header {
   width: 100%;
 }
 
-header h1 {
+.logo {
   font-size: 1.875rem;
   font-weight: 500;
   width: 35%;
