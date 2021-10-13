@@ -1,15 +1,7 @@
 // this is the api request helper
 
-import { options } from '../../api/routes';
-
-function Data() {
-  function api(
-    path,
-    method,
-    body = null,
-    requiresAuth = false,
-    credentials = null
-  ) {
+class Data {
+  api(path, method, body = null, requiresAuth = false, credentials = null) {
     const url = 'http://localhost:5000/api' + path;
 
     // api request config
@@ -33,14 +25,17 @@ function Data() {
       options.headers['Authorization'] = `Basic ${encodedCredentials}`;
     }
 
-    return fetch(path, options);
+    return fetch(url, options);
   }
 
   // API requests
 
   // GET user
-  async function getUser(email, password) {
-    const user = await api('/users', 'GET', null, true, { email, password });
+  async getUser(email, password) {
+    const user = await this.api('/users', 'GET', null, true, {
+      email,
+      password,
+    });
 
     if (user.status === 200) {
       return user.json().then(data => data);
@@ -50,8 +45,8 @@ function Data() {
   }
 
   // POST (create) user
-  async function createUser(newUser) {
-    const response = await api('/users', 'POST', newUser);
+  async createUser(newUser) {
+    const response = await this.api('/users', 'POST', newUser);
 
     if (response.status === 201) {
       console.log(
@@ -66,8 +61,8 @@ function Data() {
   }
 
   // GET user goals
-  async function getGoals(user) {
-    const goals = await api('/goals', 'GET', null, true, {
+  async getGoals(user) {
+    const goals = await this.api('/goals', 'GET', null, true, {
       email: user.email,
       password: user.password,
     });
@@ -77,13 +72,69 @@ function Data() {
     }
   }
 
+  // GET single goal
+  async getGoal(goalId, user) {
+    const goal = await this.api(`/goals/${goalId}`, 'GET', null, true, {
+      email: user.email,
+      password: user.password,
+    });
+
+    if (goal.status === 200) {
+      return goal.json().then(data => data);
+    } else if (goal.status === 404) {
+      return goal.json().then(data => data.message);
+    }
+  }
+
   // POST (create) goal
+  async createGoal(newGoal, user) {
+    const response = await this.api('/goals', 'POST', newGoal, true, {
+      email: user.email,
+      password: user.password,
+    });
+
+    if (response.status === 201) {
+      console.log('Goal was successfully created');
+      return;
+    } else if (response.status === 400) {
+      return response.json().then(data => data);
+    }
+  }
+
+  // UPDATE goal
+  async updateGoal(goal, user) {
+    const goalId = goal._id;
+    const updatedGoal = await this.api(`/goals/${goalId}`, 'PUT', goal, {
+      email: user.email,
+      password: user.password,
+    });
+
+    if (updatedGoal.status === 204) {
+      console.log(`Goal ${goalId} was updated successfully`);
+      return;
+    } else if (updatedGoal.status === 404) {
+      return updatedGoal.json().then(data => data.message);
+    } else if (updatedGoal.status === 403) {
+      return;
+    } else if (updatedGoal.status === 400) {
+      return updatedGoal.json().then(data => data.errors);
+    }
+  }
 
   // DELETE goal
+  async deleteGoal(goalId, user) {
+    const response = await this.api(`/goals/${goalId}`, 'DELETE', null, true, {
+      email: user.email,
+      password: user.password,
+    });
 
-  // GET goal detail
-
-  // PUT (edit) goal detail
+    if (response.status === 204) {
+      console.log('Goal was successfully deleted');
+      return;
+    } else if (response.status === 404) {
+      return response.json().then(data => data.message);
+    }
+  }
 }
 
 export default Data;
