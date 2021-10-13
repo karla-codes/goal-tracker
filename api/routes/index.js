@@ -135,6 +135,8 @@ router.put(
         const goal = await currentGoal.updateOne(updatedGoal);
         console.log(goal);
         res.status(204).end();
+      } else {
+        res.status(403).end();
       }
     } else {
       res.status(404).json({ message: 'Page not found' });
