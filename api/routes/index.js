@@ -107,7 +107,7 @@ router.post(
   asyncHandler(async (req, res, next) => {
     const newGoal = await req.body;
     const currentUser = await req.currentUser;
-    if (newGoal) {
+    if (newGoal !== null) {
       newGoal.author = currentUser._id;
       Goal.create(newGoal, (err, goal) => {
         if (err) {
@@ -117,6 +117,8 @@ router.post(
           res.status(201).json(goal);
         }
       });
+    } else {
+      res.status(404).json({ message: 'Page not found' });
     }
   })
 );
