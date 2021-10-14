@@ -22,13 +22,13 @@ function UserSignIn(props) {
     const regex = /[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+/;
 
     if (!values.email) {
-      errors.email = 'Cannot leave blank';
+      errors.email = 'Cannot leave email blank';
     } else if (!regex.test(values.email)) {
       errors.email = 'Invalid email format';
     }
 
     if (!values.password) {
-      errors.password = 'Cannot leave blank';
+      errors.password = 'Cannot leave password blank';
     } else if (values.password.length < 8) {
       errors.password = 'Password needs to be more than 8 characters long';
     }
@@ -50,20 +50,24 @@ function UserSignIn(props) {
     e.preventDefault();
     const { from } = props.history.state || { from: '/goals' };
     setErrors(formValidation(formValues));
-    console.log(formValues);
-    // run sign in functionality with API helper
-    // - GET user request
-    // - set cookies
-    context.actions
-      .signIn(formValues)
-      .then(user => {
-        if (user === null) {
-          setErrors({ fetch: 'Sign in was unsuccessfull' });
-        } else {
-          props.history.push(from);
-        }
-      })
-      .catch(err => console.log(err));
+
+    if (errors.email || errors.password || errors.fetch) {
+      return;
+    } else {
+      // run sign in functionality with API helper
+      // - GET user request
+      // - set cookies
+      context.actions
+        .signIn(formValues)
+        .then(user => {
+          if (user === null) {
+            setErrors({ fetch: 'Sign in was unsuccessfull' });
+          } else {
+            props.history.push(from);
+          }
+        })
+        .catch(err => console.log(err));
+    }
   }
 
   return (
@@ -75,6 +79,7 @@ function UserSignIn(props) {
           buttonText="Login"
           elements={() => (
             <>
+              {errors.fetch && <span>{errors.fetch}</span>}
               <label htmlFor="email">Email:</label>
               <input
                 name="email"
