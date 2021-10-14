@@ -9,7 +9,7 @@ function Navigation(props) {
   console.log(authUser);
   return (
     <header>
-      <Link to="/goals" className="logo">
+      <Link to={authUser ? '/goals' : ''} className="logo">
         Goal Tracker
       </Link>
       <nav>
