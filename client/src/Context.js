@@ -6,12 +6,14 @@ const Context = React.createContext();
 
 export const Provider = props => {
   // data that needs to be accessed by multiple components
-  const [authUser, setAuthUser] = useState(null);
 
   // - Authenticated user
   // - api request helper
   // - setting/deleting cookies
+  const cookie = Cookies.get('authUser');
   const data = new Data();
+
+  const [authUser, setAuthUser] = useState(cookie ? JSON.parse(cookie) : null);
 
   const value = {
     // here goes the state that needs to be accessed thropugh context
@@ -20,15 +22,38 @@ export const Provider = props => {
     actions: {
       signIn,
       signOut,
+      getGoalDetails,
     },
   };
 
+  // const fetchData = async () => {
+  //   // use api request to fetch data
+  //   const userGoals = await data
+  //     .getGoals(authUser)
+  //     .then(data => data)
+  //     .catch(err => console.log(err));
+  //   // save the returned info and pass to Goal component
+  //   console.log(userGoals);
+  //   setGoals(userGoals);
+  // };
+  // fetchData();
+
+  async function getGoalDetails(goalId) {
+    const userGoals = await data
+      .getGoal(goalId, authUser)
+      .then(data => data)
+      .catch(err => console.log(err));
+    return userGoals;
+  }
+
   async function signIn(formValues) {
     const user = await data.getUser(formValues.email, formValues.password);
-    console.log(user);
     if (user !== null) {
+      user.password = formValues.password;
       setAuthUser(user);
-      Cookies.set('authUser', JSON.stringify(user), { expires: 1 });
+      Cookies.set('authUser', JSON.stringify(user), {
+        expires: 1,
+      });
     }
     return user;
   }
