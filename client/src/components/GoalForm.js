@@ -1,9 +1,59 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-// import Goal from './Goal';
+import React, { useEffect, useState } from 'react';
+import { Link, withRouter } from 'react-router-dom';
 
 function GoalForm(props) {
-  const { headerText } = props;
+  const { headerText, context, id } = props;
+  const { authUser } = context;
+
+  const [formValues, setFormValues] = useState({
+    goal: '',
+    motivations: '',
+    progressMilestones: '',
+    accountability: '',
+    category: '',
+  });
+  const [errors, setErrors] = useState({});
+
+  useEffect(() => {
+    const fetchGoalDetails = async () => {
+      // const goalDetails = await context.data.
+    };
+  });
+
+  function validateForm(values) {
+    let errors = {};
+    if (!values.goal) {
+      errors.goal = 'Cannot leave goal blank';
+    }
+    return errors;
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    setErrors(validateForm(formValues));
+
+    if (errors.goal) {
+      return;
+    } else {
+      context.data
+        .createGoal(formValues, authUser)
+        .then(data => {
+          if (data) {
+            props.history.push('/notfound');
+          } else {
+            props.history.push('/goals');
+          }
+        })
+        .catch(err => console.log(err));
+    }
+  }
+
+  function handleChange(e) {
+    e.preventDefault();
+    const { name, value } = e.target;
+    setFormValues({ ...formValues, [name]: value });
+  }
+
   return (
     <main>
       <h1>{headerText}</h1>
@@ -34,7 +84,7 @@ function GoalForm(props) {
             <p>How will you hold yourself accountable?</p>
           </div>
         </div>
-        <form>
+        <form onSubmit={handleSubmit}>
           <div className="form-textfields">
             <p>
               <label htmlFor="goal">Goal</label>
@@ -44,6 +94,7 @@ function GoalForm(props) {
                 autoComplete="off"
                 cols="30"
                 rows="5"
+                onChange={handleChange}
               ></textarea>
             </p>
             <p>
@@ -54,6 +105,7 @@ function GoalForm(props) {
                 autoComplete="off"
                 cols="30"
                 rows="5"
+                onChange={handleChange}
               ></textarea>
             </p>
             <p>
@@ -64,6 +116,7 @@ function GoalForm(props) {
                 autoComplete="off"
                 cols="30"
                 rows="5"
+                onChange={handleChange}
               ></textarea>
             </p>
             <p>
@@ -74,13 +127,14 @@ function GoalForm(props) {
                 autoComplete="off"
                 cols="30"
                 rows="5"
+                onChange={handleChange}
               ></textarea>
             </p>
           </div>
 
           <p>
             <label htmlFor="category">Category</label>
-            <select name="category" id="category">
+            <select name="category" id="category" onChange={handleChange}>
               <option value="health">Health</option>
               <option value="finances">Finances</option>
               <option value="work">Work</option>
@@ -90,8 +144,10 @@ function GoalForm(props) {
             </select>
           </p>
           <p>
-            <button>Submit</button>
-            <Link to="">Cancel</Link>
+            <button className="button" type="submit">
+              Submit
+            </button>
+            <Link to="/goals">Cancel</Link>
           </p>
         </form>
       </div>
@@ -99,4 +155,4 @@ function GoalForm(props) {
   );
 }
 
-export default GoalForm;
+export default withRouter(GoalForm);
