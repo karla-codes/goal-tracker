@@ -1,9 +1,33 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import Goal from './Goal';
 
-function Dashboard() {
+function Dashboard(props) {
+  const { context } = props;
+  const { authUser, data } = context;
+  const [goals, setGoals] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      // use api request to fetch data
+      const userGoals = await data
+        .getGoals(authUser)
+        .then(data => data)
+        .catch(err => console.log(err));
+      // save the returned info and pass to Goal component
+      console.log(userGoals);
+      setGoals(userGoals);
+    };
+    fetchData();
+  }, []);
+
+  // function goalDetails() {
+  //   goals.forEach(goal => {
+  //     return <Goal goal={goal} />;
+  //   });
+  // }
+
   return (
     <main>
       <div className="dashboard-info">
@@ -18,9 +42,9 @@ function Dashboard() {
       </div>
       {/* Add goals here */}
       <div className="goal-container">
-        <Goal />
-        <Goal />
-        <Goal />
+        {goals.map(goal => (
+          <Goal goal={goal} key={goal._id} />
+        ))}
       </div>
     </main>
   );
