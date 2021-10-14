@@ -2,7 +2,8 @@ import React from 'react';
 import GoalForm from './GoalForm';
 
 function CreateGoal(props) {
-  return <GoalForm headerText="Create Goal" />;
+  const { context } = props;
+  return <GoalForm headerText="Create Goal" context={context} />;
 }
 
 export default CreateGoal;
