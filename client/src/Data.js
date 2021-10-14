@@ -82,7 +82,7 @@ class Data {
     if (goal.status === 200) {
       return goal.json().then(data => data);
     } else if (goal.status === 404) {
-      return goal.json().then(data => data.message);
+      return goal.json().then(data => data);
     }
   }
 
@@ -96,7 +96,7 @@ class Data {
     if (response.status === 201) {
       console.log('Goal was successfully created');
       return;
-    } else if (response.status === 400) {
+    } else if (response.status === 404) {
       return response.json().then(data => data);
     }
   }
