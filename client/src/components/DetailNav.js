@@ -1,12 +1,14 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
-function DetailNav() {
+function DetailNav(props) {
+  const { goalId } = props;
   return (
     <div className="detail-nav">
-      <a href="">Back to Goals</a>
+      <Link to="/goals">Back to Goals</Link>
       <div>
-        <a href="">Edit Goal Details</a>
-        <a href="">Delete Goal</a>
+        <Link to={`/goals/${goalId}/edit`}>Edit Goal Details</Link>
+        <Link to={`/goals/${goalId}/delete`}>Delete Goal</Link>
       </div>
     </div>
   );
