@@ -147,7 +147,9 @@ Login/Sign Up Form
 
 .dashboard-info {
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
   font-size: 1.125rem;
   margin: 0 auto 3.25rem;
 }
@@ -159,27 +161,38 @@ Login/Sign Up Form
 }
 
 .dashboard-info div {
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
+  max-width: 520px;
 }
 
 .dashboard-info a {
   font-size: 1.25rem;
 }
 
-.goal-container {
-  display: flex;
-  flex-direction: column;
+.link-button {
+  border: 2px solid black;
+  border-radius: 5px;
+  box-shadow: 3px 3px 1px black;
+  width: max-content;
+  height: max-content;
+  padding: 1rem;
+}
 
-  margin: 1rem auto;
+.goal-container {
+  display: grid;
+  grid-gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  margin-bottom: 4rem;
 }
 
 .goal {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   font-size: 1.5rem;
-  border: 2px solid rgb(131, 131, 131);
-  background-color: rgba(100, 148, 237, 0.664);
-  width: 100%;
+  border: 4px solid #003494;
+  background-color: #a5c1f6;
   padding: 1.5rem;
-  margin-bottom: 2rem;
 }
 
 .goal h2 {
@@ -187,6 +200,8 @@ Login/Sign Up Form
 }
 
 .goal-category {
+  font-size: 1rem;
+  font-weight: 700;
   text-transform: uppercase;
   margin-top: 3.875rem;
 }
