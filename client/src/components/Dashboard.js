@@ -20,6 +20,7 @@ function Dashboard(props) {
       setGoals(userGoals);
     };
     fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // function goalDetails() {
