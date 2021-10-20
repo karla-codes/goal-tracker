@@ -66,7 +66,10 @@ function UserSignIn(props) {
             props.history.push(from);
           }
         })
-        .catch(err => console.log(err));
+        .catch(err => {
+          console.log(err);
+          props.push.history('/errors');
+        });
     }
   }
 
