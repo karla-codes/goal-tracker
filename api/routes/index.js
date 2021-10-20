@@ -54,20 +54,33 @@ router.post(
     }
 
     if (newUser.password) {
-      // hash user password
-      bcrypt.hash(newUser.password, 10, (err, hash) => {
-        newUser.password = hash;
-        // add new user to database
-        User.create(newUser, (err, user) => {
-          if (err) {
-            return next(err);
+      User.findOne({ email: newUser.email }, (err, user) => {
+        if (err) {
+          return next(err);
+        } else {
+          if (user) {
+            errors.push(
+              'A user with that email is already registered. Please use a different email.'
+            );
+            res.status(400).json({ errors });
           } else {
-            // return 201 status code
-            // login user after creating account
-            console.log('New user was successfully created!');
-            res.status(201).end();
+            // hash user password
+            bcrypt.hash(newUser.password, 10, (err, hash) => {
+              newUser.password = hash;
+              // add new user to database
+              User.create(newUser, (err, user) => {
+                if (err) {
+                  return next(err);
+                } else {
+                  // return 201 status code
+                  // login user after creating account
+                  console.log('New user was successfully created!');
+                  res.status(201).end();
+                }
+              });
+            });
           }
-        });
+        }
       });
     }
   })
@@ -108,9 +121,11 @@ router.post(
     const newGoal = await req.body;
     const currentUser = await req.currentUser;
     if (newGoal !== null) {
+      console.log(newGoal);
       newGoal.author = currentUser._id;
       Goal.create(newGoal, (err, goal) => {
         if (err) {
+          console.log(err);
           return next(err);
         } else {
           console.log('New goal was successfully created!');
@@ -130,11 +145,11 @@ router.put(
   asyncHandler(async (req, res, next) => {
     const goalId = req.params.goalId;
     const updatedGoal = req.body;
-    console.log(updatedGoal);
+    console.log(updatedGoal, goalId.length);
     if (goalId.length === 24) {
       const currentGoal = await Goal.findById(goalId);
       if (currentGoal) {
-        const goal = await currentGoal.updateOne(updatedGoal);
+        const goal = await Goal.updateOne({ _id: goalId }, updatedGoal);
         console.log(goal);
         res.status(204).end();
       } else {
