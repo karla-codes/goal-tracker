@@ -14,10 +14,12 @@ export const Provider = props => {
   const data = new Data();
 
   const [authUser, setAuthUser] = useState(cookie ? JSON.parse(cookie) : null);
+  const [goalDetails, setGoalDetails] = useState({});
 
   const value = {
     // here goes the state that needs to be accessed thropugh context
     authUser,
+    goalDetails,
     data,
     actions: {
       signIn,
@@ -39,11 +41,22 @@ export const Provider = props => {
   // fetchData();
 
   async function getGoalDetails(goalId) {
-    const userGoals = await data
+    const goalDetails = await data
       .getGoal(goalId, authUser)
-      .then(data => data)
-      .catch(err => console.log(err));
-    return userGoals;
+      .then(data => {
+        if (data.status === 404) {
+          return { error: data.message };
+        } else {
+          return data;
+        }
+      })
+      .catch(err => {
+        console.log(err);
+        return err;
+      });
+
+    setGoalDetails(goalDetails);
+    return goalDetails;
   }
 
   async function signIn(formValues) {
