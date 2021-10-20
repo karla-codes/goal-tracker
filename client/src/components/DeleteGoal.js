@@ -1,10 +1,11 @@
 import React from 'react';
-import { useParams } from 'react-router';
+import { Redirect, useParams } from 'react-router';
+import { Link } from 'react-router-dom';
 
 function DeleteGoal(props) {
   const { id } = useParams();
   const { context } = props;
-  const { authUser } = context;
+  const { authUser, goalDetails } = context;
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -17,27 +18,27 @@ function DeleteGoal(props) {
       });
   }
 
-  function cancel() {
-    props.history.push(`/goals/${id}`);
+  if (id === goalDetails._id) {
+    return (
+      <main>
+        <div className="delete-goal">
+          <h1>Delete Goal</h1>
+          <p>Are you sure you want to delete this goal?</p>
+
+          <form onSubmit={handleSubmit}>
+            <Link className="cancel-btn button" to="/goals">
+              Cancel
+            </Link>
+            <button className="delete-btn button" type="submit">
+              Delete
+            </button>
+          </form>
+        </div>
+      </main>
+    );
+  } else {
+    return <Redirect to="/notfound" />;
   }
-
-  return (
-    <main>
-      <div className="delete-goal">
-        <h1>Delete Goal</h1>
-        <p>Are you sure you want to delete this goal?</p>
-
-        <form onSubmit={handleSubmit}>
-          <button className="cancel-btn button" onClick={cancel}>
-            Cancel
-          </button>
-          <button className="delete-btn button" type="submit">
-            Delete
-          </button>
-        </form>
-      </div>
-    </main>
-  );
 }
 
 export default DeleteGoal;
