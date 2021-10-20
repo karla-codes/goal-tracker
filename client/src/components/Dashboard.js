@@ -39,7 +39,9 @@ function Dashboard(props) {
             document your progress.
           </p>
         </div>
-        <Link to="/goals/new">Create New Goal</Link>
+        <Link to="/goals/new" className="link-button">
+          Create New Goal
+        </Link>
       </div>
       {/* Add goals here */}
       <div className="goal-container">
