@@ -6,7 +6,6 @@ function Navigation(props) {
   const { authUser } = context;
   // check if an authorized user exists
   // if true, set welcome message in nav
-  console.log(authUser);
   return (
     <header>
       <Link to={authUser ? '/goals' : ''} className="logo">
