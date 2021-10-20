@@ -52,7 +52,6 @@ class Data {
       console.log(
         `A new account was successfully created for ${newUser.fullName}`
       );
-      return [];
     } else if (response.status === 400) {
       return response.json().then(data => {
         return data.errors;
@@ -98,13 +97,14 @@ class Data {
       return;
     } else if (response.status === 404) {
       return response.json().then(data => data);
+    } else if (response.status === 400) {
+      return response.json().then(data => data);
     }
   }
 
   // UPDATE goal
-  async updateGoal(goal, user) {
-    const goalId = goal._id;
-    const updatedGoal = await this.api(`/goals/${goalId}`, 'PUT', goal, {
+  async updateGoal(goal, goalId, user) {
+    const updatedGoal = await this.api(`/goals/${goalId}`, 'PUT', goal, true, {
       email: user.email,
       password: user.password,
     });
@@ -113,11 +113,11 @@ class Data {
       console.log(`Goal ${goalId} was updated successfully`);
       return;
     } else if (updatedGoal.status === 404) {
-      return updatedGoal.json().then(data => data.message);
+      return updatedGoal.json().then(data => data);
     } else if (updatedGoal.status === 403) {
       return;
     } else if (updatedGoal.status === 400) {
-      return updatedGoal.json().then(data => data.errors);
+      return;
     }
   }
 
