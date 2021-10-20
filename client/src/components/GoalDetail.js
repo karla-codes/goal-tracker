@@ -1,36 +1,29 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 // import JournalPage from './JournalPage';
 import DetailNav from './DetailNav';
 import { useParams } from 'react-router';
 
 function GoalDetail(props) {
   const { context } = props;
-  const { data, authUser } = context;
+  const { actions, goalDetails } = context;
   const { id } = useParams();
-  const [goalDetails, setGoalDetails] = useState({});
 
   useEffect(() => {
     const fetchGoals = async () => {
-      const goalDetails = await data
-        .getGoal(id, authUser)
-        .then(data => data)
-        .catch(err => {
-          console.log(err);
-          props.history.push('/errors');
+      const fetchGoalDetails = async () => {
+        const goalDetails = await actions.getGoalDetails(id).then(data => {
+          if (data.message) {
+            props.history.push('/notfound');
+          }
         });
 
-      console.log(authUser);
-      console.log(goalDetails);
-
-      if (goalDetails.message) {
-        console.log(goalDetails.message);
-        props.history.push('/notfound');
-      } else {
-        setGoalDetails(goalDetails);
-      }
+        return goalDetails;
+      };
+      fetchGoalDetails();
     };
 
     fetchGoals();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
