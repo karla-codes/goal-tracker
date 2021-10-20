@@ -33,6 +33,7 @@ function UserSignIn(props) {
       errors.password = 'Password needs to be more than 8 characters long';
     }
 
+    setErrors(errors);
     return errors;
   }
 
@@ -49,10 +50,10 @@ function UserSignIn(props) {
   function handleSubmit(e) {
     e.preventDefault();
     const { from } = props.history.state || { from: '/goals' };
-    setErrors(formValidation(formValues));
+    const validate = formValidation(formValues);
 
-    if (errors.email || errors.password || errors.fetch) {
-      return;
+    if (validate.email || validate.password) {
+      setErrors(validate);
     } else {
       // run sign in functionality with API helper
       // - GET user request
