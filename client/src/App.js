@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Route, Switch, Link } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import './style.css';
 
 import withContext from './Context';
@@ -16,6 +16,7 @@ import CreateGoal from './components/CreateGoal';
 import DeleteGoal from './components/DeleteGoal';
 import NotFound from './components/NotFound';
 import Errors from './components/Errors';
+import PrivateRoute from './components/PrivateRoute';
 
 const UserSignInWithContext = withContext(UserSignIn);
 const NavigationWithContext = withContext(Navigation);
@@ -35,15 +36,18 @@ function App() {
         <Route exact path="/" component={UserSignInWithContext} />
         <Route path="/signup" component={UserSignUpWithContext} />
         <Route path="/signout" component={UserSignOutWithContext} />
-        <Route path="/goals/new" component={CreateGoalWithContext} />
+        <PrivateRoute path="/goals/new" component={CreateGoalWithContext} />
         {/* <Route
           path="/goals/:id/journal/:pageId"
           component={JournalPageDetail}
         /> */}
-        <Route path="/goals/:id/delete" component={DeleteGoalWithContext} />
-        <Route path="/goals/:id/edit" component={EditGoalWithContext} />
-        <Route path="/goals/:id" component={GoalDetailWithContext} />
-        <Route path="/goals" component={DashboardWithContext} />
+        <PrivateRoute
+          path="/goals/:id/delete"
+          component={DeleteGoalWithContext}
+        />
+        <PrivateRoute path="/goals/:id/edit" component={EditGoalWithContext} />
+        <PrivateRoute path="/goals/:id" component={GoalDetailWithContext} />
+        <PrivateRoute path="/goals" component={DashboardWithContext} />
         <Route path="/errors" component={Errors} />
         <Route path="/notfound" component={NotFound} />
         <Route component={NotFound} />
