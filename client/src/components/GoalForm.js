@@ -153,10 +153,10 @@ function GoalForm(props) {
               ></textarea>
             </p>
             <p>
-              <label htmlFor="progress-milestones">Progress Milestones</label>
+              <label htmlFor="progressMilestones">Progress Milestones</label>
               <textarea
-                name="progress-milestones"
-                id="progress-milestones"
+                name="progressMilestones"
+                id="progressMilestones"
                 autoComplete="off"
                 cols="30"
                 rows="5"
@@ -195,7 +195,7 @@ function GoalForm(props) {
               <option value="mindfulness">Mindfulness</option>
             </select>
           </p>
-          <p>
+          <div className="form-buttons">
             <button className="button" type="submit">
               Submit
             </button>
@@ -204,7 +204,7 @@ function GoalForm(props) {
             ) : (
               <Link to="/goals">Cancel</Link>
             )}
-          </p>
+          </div>
         </form>
       </div>
     </main>
