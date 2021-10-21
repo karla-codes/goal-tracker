@@ -23,12 +23,6 @@ function Dashboard(props) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // function goalDetails() {
-  //   goals.forEach(goal => {
-  //     return <Goal goal={goal} />;
-  //   });
-  // }
-
   return (
     <main>
       <div className="dashboard-info">
