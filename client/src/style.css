@@ -154,7 +154,7 @@ Login/Sign Up Form
   margin: 0 auto 3.25rem;
 }
 
-.dashboard-info h2 {
+.dashboard-info h1 {
   font-size: 1.875rem;
   font-weight: 500;
   margin-bottom: 10px;
@@ -180,7 +180,7 @@ Login/Sign Up Form
 
 .goal-container {
   display: grid;
-  grid-gap: 2rem;
+  gap: 2rem;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   margin-bottom: 4rem;
 }
@@ -196,7 +196,8 @@ Login/Sign Up Form
 }
 
 .goal h2 {
-  font-weight: 400;
+  font-size: 1.5rem;
+  text-decoration: underline;
 }
 
 .goal-category {
@@ -204,4 +205,99 @@ Login/Sign Up Form
   font-weight: 700;
   text-transform: uppercase;
   margin-top: 3.875rem;
+}
+
+/*********************************************************************
+Goal Form
+*********************************************************************/
+
+.goal-form {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.goal-form h1 {
+  font-size: 1.875rem;
+  font-weight: 500;
+  margin-bottom: 2rem;
+}
+
+.goal-guide {
+  border: 1px solid rgb(82, 82, 82);
+  background-color: rgb(254, 247, 211);
+  width: 100%;
+  padding: 2rem;
+  margin-bottom: 4rem;
+}
+
+.goal-guide h2 {
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin-bottom: 2rem;
+}
+
+.guide-item:not(:last-of-type) {
+  margin-bottom: 1rem;
+}
+
+.guide-item h3 {
+  font-size: 1.125rem;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+.goal-form form {
+  width: 100%;
+}
+
+.form-description {
+  margin-bottom: 2rem;
+}
+
+.form-textfields {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  margin-bottom: 2rem;
+}
+
+.form-textfields p {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-textfields p label,
+.form-select label {
+  margin-bottom: 10px;
+}
+
+.form-select {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 2rem;
+}
+
+.form-select select {
+  appearance: none;
+  background-color: transparent;
+  border: none;
+  padding: 0 1em 0 0;
+  margin: 0;
+  width: 100%;
+  font-family: inherit;
+  font-size: inherit;
+  cursor: inherit;
+  line-height: inherit;
+  outline: none;
+}
+
+.form-select select {
+  width: 100%;
+  border: 1px solid rgb(74, 74, 74);
+  border-radius: 0.25rem;
+  padding: 0.25rem 0.5rem;
+  /* font-size: 1.25rem; */
+  cursor: pointer;
+  line-height: 1.1;
+  background-color: #fff;
 }
