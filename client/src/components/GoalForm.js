@@ -89,8 +89,8 @@ function GoalForm(props) {
   if (id === goalDetails._id) {
     return (
       <main>
-        <h1>{headerText}</h1>
-        <div className="goal-form-container">
+        <div className="goal-form">
+          <h1>{headerText}</h1>
           <div className="goal-guide">
             <h2>Guide</h2>
             <div className="guide-item">
@@ -120,6 +120,7 @@ function GoalForm(props) {
             </div>
           </div>
           <form onSubmit={handleSubmit}>
+            <p className="form-description">Enter your goal details below:</p>
             <div className="validation-errors">
               <ul>
                 {errors
@@ -180,7 +181,7 @@ function GoalForm(props) {
               </p>
             </div>
 
-            <p>
+            <p className="form-select">
               <label htmlFor="category">Category</label>
               <select
                 name="category"
