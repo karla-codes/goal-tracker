@@ -5,6 +5,7 @@ Minimal CSS Reset
 html {
   box-sizing: border-box;
   font-size: 16px;
+  /* background-color: #f3f8ff; */
 }
 
 *,
@@ -79,6 +80,30 @@ header nav a {
   margin-top: 10px;
 }
 
+.button {
+  font-size: 1.25rem;
+  font-family: inherit;
+  height: 3.625rem;
+  border: none;
+  background-color: transparent;
+  padding: 0;
+  cursor: pointer;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid black;
+  border-radius: 5px;
+  box-shadow: 3px 3px 1px black;
+  width: max-content;
+  height: max-content;
+  padding: 1rem;
+
+  @media screen and (-ms-high-contrast: active) {
+    border: 2px solid currentcolor;
+  }
+}
+
 /*********************************************************************
 Login/Sign Up Form
 *********************************************************************/
@@ -121,12 +146,6 @@ Login/Sign Up Form
 
 .form-wrapper form input:last-of-type {
   margin-bottom: 2rem;
-}
-
-.button {
-  font-size: 1.5rem;
-  font-family: inherit;
-  height: 3.625rem;
 }
 
 .cancel-btn {
@@ -214,6 +233,7 @@ Goal Form
 .goal-form {
   display: flex;
   flex-wrap: wrap;
+  margin-bottom: 4em;
 }
 
 .goal-form h1 {
@@ -252,6 +272,7 @@ Goal Form
 
 .form-description {
   margin-bottom: 2rem;
+  text-decoration: underline;
 }
 
 .form-textfields {
@@ -271,6 +292,13 @@ Goal Form
   margin-bottom: 10px;
 }
 
+.form-textfields textarea {
+  font-family: inherit;
+  font-size: max(16px, 1em);
+  margin-bottom: 1rem;
+  padding: 5px;
+}
+
 .form-select {
   display: flex;
   flex-direction: column;
@@ -278,7 +306,6 @@ Goal Form
 }
 
 .form-select select {
-  appearance: none;
   background-color: transparent;
   border: none;
   padding: 0 1em 0 0;
@@ -288,16 +315,21 @@ Goal Form
   font-size: inherit;
   cursor: inherit;
   line-height: inherit;
-  outline: none;
 }
 
 .form-select select {
-  width: 100%;
+  width: max-content;
   border: 1px solid rgb(74, 74, 74);
-  border-radius: 0.25rem;
-  padding: 0.25rem 0.5rem;
-  /* font-size: 1.25rem; */
+  border-radius: 0.25em;
+  padding: 0.25em 0.5em;
   cursor: pointer;
   line-height: 1.1;
   background-color: #fff;
+}
+
+.form-buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 200px;
 }
