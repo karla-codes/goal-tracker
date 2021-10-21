@@ -129,21 +129,6 @@ function UserSignUp(props) {
       </div>
     </main>
   );
-
-  // handle input change
-
-  function submit() {
-    // save input values into object
-    // send request to REST API to create a new user
-    // if any validation errors occur, display errors
-    // else login user and take to last page visited || user dashboard
-  }
-
-  function cancel(e) {
-    e.preventDefault();
-    // return to login page
-    // props.history.push('/login')
-  }
 }
 
 export default UserSignUp;
