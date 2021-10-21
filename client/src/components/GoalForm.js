@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link, withRouter, Redirect } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 
 function GoalForm(props) {
   const { headerText, context, id } = props;
@@ -15,7 +15,7 @@ function GoalForm(props) {
   const [errors, setErrors] = useState({});
 
   useEffect(() => {
-    if (goalDetails) {
+    if (goalDetails && headerText === 'Edit Goal') {
       setFormValues(goalDetails);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -137,7 +137,7 @@ function GoalForm(props) {
                 cols="30"
                 rows="5"
                 onChange={handleChange}
-                value={id ? formValues.goal : null}
+                value={formValues.goal}
               ></textarea>
             </p>
             <p>
@@ -149,7 +149,7 @@ function GoalForm(props) {
                 cols="30"
                 rows="5"
                 onChange={handleChange}
-                value={id ? formValues.motivations : null}
+                value={formValues.motivations}
               ></textarea>
             </p>
             <p>
@@ -161,7 +161,7 @@ function GoalForm(props) {
                 cols="30"
                 rows="5"
                 onChange={handleChange}
-                value={id ? formValues.progressMilestones : null}
+                value={formValues.progressMilestones}
               ></textarea>
             </p>
             <p>
@@ -173,7 +173,7 @@ function GoalForm(props) {
                 cols="30"
                 rows="5"
                 onChange={handleChange}
-                value={id ? formValues.accountability : null}
+                value={formValues.accountability}
               ></textarea>
             </p>
           </div>
@@ -184,7 +184,7 @@ function GoalForm(props) {
               name="category"
               id="category"
               onChange={handleChange}
-              value={id ? formValues.category : null}
+              value={formValues.category}
             >
               <option value="">Please choose an option</option>
               <option value="health">Health</option>
