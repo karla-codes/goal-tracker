@@ -86,135 +86,129 @@ function GoalForm(props) {
     setFormValues({ ...formValues, [name]: value });
   }
 
-  if (id === goalDetails._id) {
-    return (
-      <main>
-        <div className="goal-form">
-          <h1>{headerText}</h1>
-          <div className="goal-guide">
-            <h2>Guide</h2>
-            <div className="guide-item">
-              <h3>Goal:</h3>
-              <p>
-                Define your goal. If you’re stuck, use the S.M.A.R.T (Specific,
-                Measurable, Attainable, Relevant, Time-based) method to get some
-                inspiration
-              </p>
-            </div>
-            <div className="guide-item">
-              <h3>Motivations:</h3>
-              <p>
-                Why is this goal important? What will you get out of achieving
-                this goal?
-              </p>
-            </div>
-            <div className="guide-item">
-              <h3>Progress Milestones:</h3>
-              <p>
-                These should be clear, trackable, and measurable objectives.
-              </p>
-            </div>
-            <div className="guide-item">
-              <h3>Accountability:</h3>
-              <p>How will you hold yourself accountable?</p>
-            </div>
+  return (
+    <main>
+      <div className="goal-form">
+        <h1>{headerText}</h1>
+        <div className="goal-guide">
+          <h2>Guide</h2>
+          <div className="guide-item">
+            <h3>Goal:</h3>
+            <p>
+              Define your goal. If you’re stuck, use the S.M.A.R.T (Specific,
+              Measurable, Attainable, Relevant, Time-based) method to get some
+              inspiration
+            </p>
           </div>
-          <form onSubmit={handleSubmit}>
-            <p className="form-description">Enter your goal details below:</p>
-            <div className="validation-errors">
-              <ul>
-                {errors
-                  ? Object.values(errors).map((err, i) => {
-                      return <li key={i}>{err}</li>;
-                    })
-                  : ''}
-              </ul>
-            </div>
-            <div className="form-textfields">
-              <p>
-                <label htmlFor="goal">Goal</label>
-                <textarea
-                  name="goal"
-                  id="goal"
-                  autoComplete="off"
-                  cols="30"
-                  rows="5"
-                  onChange={handleChange}
-                  value={formValues.goal}
-                ></textarea>
-              </p>
-              <p>
-                <label htmlFor="motivations">Motivations</label>
-                <textarea
-                  name="motivations"
-                  id="motivations"
-                  autoComplete="off"
-                  cols="30"
-                  rows="5"
-                  onChange={handleChange}
-                  value={formValues.motivations}
-                ></textarea>
-              </p>
-              <p>
-                <label htmlFor="progress-milestones">Progress Milestones</label>
-                <textarea
-                  name="progress-milestones"
-                  id="progress-milestones"
-                  autoComplete="off"
-                  cols="30"
-                  rows="5"
-                  onChange={handleChange}
-                  value={formValues.progressMilestones}
-                ></textarea>
-              </p>
-              <p>
-                <label htmlFor="accountability">Accountability</label>
-                <textarea
-                  name="accountability"
-                  id="accountability"
-                  autoComplete="off"
-                  cols="30"
-                  rows="5"
-                  onChange={handleChange}
-                  value={formValues.accountability}
-                ></textarea>
-              </p>
-            </div>
-
-            <p className="form-select">
-              <label htmlFor="category">Category</label>
-              <select
-                name="category"
-                id="category"
+          <div className="guide-item">
+            <h3>Motivations:</h3>
+            <p>
+              Why is this goal important? What will you get out of achieving
+              this goal?
+            </p>
+          </div>
+          <div className="guide-item">
+            <h3>Progress Milestones:</h3>
+            <p>These should be clear, trackable, and measurable objectives.</p>
+          </div>
+          <div className="guide-item">
+            <h3>Accountability:</h3>
+            <p>How will you hold yourself accountable?</p>
+          </div>
+        </div>
+        <form onSubmit={handleSubmit}>
+          <p className="form-description">Enter your goal details below:</p>
+          <div className="validation-errors">
+            <ul>
+              {errors
+                ? Object.values(errors).map((err, i) => {
+                    return <li key={i}>{err}</li>;
+                  })
+                : ''}
+            </ul>
+          </div>
+          <div className="form-textfields">
+            <p>
+              <label htmlFor="goal">Goal</label>
+              <textarea
+                name="goal"
+                id="goal"
+                autoComplete="off"
+                cols="30"
+                rows="5"
                 onChange={handleChange}
-                value={formValues.category}
-              >
-                <option value="">Please choose an option</option>
-                <option value="health">Health</option>
-                <option value="finances">Finances</option>
-                <option value="work">Work</option>
-                <option value="relationships">Relationships</option>
-                <option value="personal growth">Personal Growth</option>
-                <option value="mindfulness">Mindfulness</option>
-              </select>
+                value={id ? formValues.goal : null}
+              ></textarea>
             </p>
             <p>
-              <button className="button" type="submit">
-                Submit
-              </button>
-              {headerText === 'Edit Goal' ? (
-                <Link to={`/goals/${id}`}>Cancel</Link>
-              ) : (
-                <Link to="/goals">Cancel</Link>
-              )}
+              <label htmlFor="motivations">Motivations</label>
+              <textarea
+                name="motivations"
+                id="motivations"
+                autoComplete="off"
+                cols="30"
+                rows="5"
+                onChange={handleChange}
+                value={id ? formValues.motivations : null}
+              ></textarea>
             </p>
-          </form>
-        </div>
-      </main>
-    );
-  } else {
-    return <Redirect to="/notfound" />;
-  }
+            <p>
+              <label htmlFor="progress-milestones">Progress Milestones</label>
+              <textarea
+                name="progress-milestones"
+                id="progress-milestones"
+                autoComplete="off"
+                cols="30"
+                rows="5"
+                onChange={handleChange}
+                value={id ? formValues.progressMilestones : null}
+              ></textarea>
+            </p>
+            <p>
+              <label htmlFor="accountability">Accountability</label>
+              <textarea
+                name="accountability"
+                id="accountability"
+                autoComplete="off"
+                cols="30"
+                rows="5"
+                onChange={handleChange}
+                value={id ? formValues.accountability : null}
+              ></textarea>
+            </p>
+          </div>
+
+          <p className="form-select">
+            <label htmlFor="category">Category</label>
+            <select
+              name="category"
+              id="category"
+              onChange={handleChange}
+              value={id ? formValues.category : null}
+            >
+              <option value="">Please choose an option</option>
+              <option value="health">Health</option>
+              <option value="finances">Finances</option>
+              <option value="work">Work</option>
+              <option value="relationships">Relationships</option>
+              <option value="personal growth">Personal Growth</option>
+              <option value="mindfulness">Mindfulness</option>
+            </select>
+          </p>
+          <p>
+            <button className="button" type="submit">
+              Submit
+            </button>
+            {headerText === 'Edit Goal' ? (
+              <Link to={`/goals/${id}`}>Cancel</Link>
+            ) : (
+              <Link to="/goals">Cancel</Link>
+            )}
+          </p>
+        </form>
+      </div>
+    </main>
+  );
 }
 
 export default withRouter(GoalForm);
