@@ -27,7 +27,7 @@ function Dashboard(props) {
     <main>
       <div className="dashboard-info">
         <div>
-          <h1>Goal Dashboard</h1>
+          <h1>Dashboard</h1>
           <p>
             Select a goal to view/edit goal details and a dedicated journal to
             document your progress.
