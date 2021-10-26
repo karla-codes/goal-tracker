@@ -3,12 +3,12 @@
   "version": "1.0.0",
   "description": "Short-term goal tracker based on the Self Journal",
   "scripts": {
-    "start": "node ./api/app.js",
+    "start": "node /api/app.js",
     "build": "cd client/ && npm install && npm run build"
   },
   "cacheDirectories": [
     "node_modules",
-    "api/node_modules"
+    "/api/node_modules"
   ],
   "author": "Karla Walker",
   "license": "ISC",
