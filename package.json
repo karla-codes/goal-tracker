@@ -8,7 +8,7 @@
   },
   "cacheDirectories": [
     "node_modules",
-    "/api/node_modules"
+    "api/node_modules"
   ],
   "author": "Karla Walker",
   "license": "ISC",
