@@ -7,7 +7,7 @@ function DetailNav(props) {
     <div className="detail-nav">
       <Link to="/goals">Back to Goals</Link>
       <div>
-        <Link to={`/goals/${goalId}/edit`}>Edit Goal Details</Link>
+        <Link to={`/goals/${goalId}/edit`}>Edit Goal</Link>
         <Link to={`/goals/${goalId}/delete`}>Delete Goal</Link>
       </div>
     </div>
