@@ -2,8 +2,7 @@ const express = require('express');
 const router = require('./routes');
 const mongoose = require('mongoose');
 
-const mongoPass = require('./secrets');
-const mongoDB = `mongodb+srv://admin:${mongoPass}@goal-tracker.zfcew.mongodb.net/goal-tracker-db?retryWrites=true&w=majority`;
+const mongoDB = `mongodb+srv://admin:${process.env.SECRET}@goal-tracker.zfcew.mongodb.net/goal-tracker-db?retryWrites=true&w=majority`;
 const cors = require('cors');
 
 const app = express();
