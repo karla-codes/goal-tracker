@@ -33,20 +33,40 @@ function GoalDetail(props) {
         <div className="goal-text">
           <h1>Goal</h1>
           <p>{goalDetails.goal}</p>
-          <span>{goalDetails.category}</span>
+          <span className="goal-category">{goalDetails.category}</span>
         </div>
-        <div className="details-container">
-          <div className="detail">
-            <h2>Motivations</h2>
-            <p>{goalDetails.motivations}</p>
+        <div className="bulletin-board">
+          <div className="details-wrapper">
+            <div className="detail">
+              <div className="thumbtacks">
+                <div className="thumbtack"></div>
+                <div className="thumbtack-right"></div>
+              </div>
+              <h2>Motivations</h2>
+              <p>{goalDetails.motivations}</p>
+            </div>
+            <div className="detail">
+              <div className="thumbtacks">
+                <div className="thumbtack"></div>
+                <div className="thumbtack-right"></div>
+              </div>
+              <h2>Progress Milestones</h2>
+              <p>{goalDetails.progressMilestones}</p>
+            </div>
+            <div className="detail">
+              <div className="thumbtacks">
+                <div className="thumbtack"></div>
+                <div className="thumbtack-right"></div>
+              </div>
+              <h2>Accountability</h2>
+              <p>{goalDetails.accountability}</p>
+            </div>
           </div>
-          <div className="detail">
-            <h2>Progress Milestones</h2>
-            <p>{goalDetails.progressMilestones}</p>
-          </div>
-          <div className="detail">
-            <h2>Accountability</h2>
-            <p>{goalDetails.accountability}</p>
+          <div className="quote-wrapper">
+            <h2>Motivational Quote Of The Day</h2>
+            <div className="quote">
+              <p>This is where the motivational quote will go.</p>
+            </div>
           </div>
         </div>
       </div>
