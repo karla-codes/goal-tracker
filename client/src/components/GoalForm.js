@@ -88,16 +88,16 @@ function GoalForm(props) {
 
   return (
     <main>
+      <h1>{headerText}</h1>
       <div className="goal-form">
-        <h1>{headerText}</h1>
         <div className="goal-guide">
           <h2>Guide</h2>
           <div className="guide-item">
             <h3>Goal:</h3>
             <p>
-              Define your goal. If you’re stuck, use the S.M.A.R.T (Specific,
-              Measurable, Attainable, Relevant, Time-based) method to get some
-              inspiration
+              Define your goal. If you’re feeling stuck, try using the S.M.A.R.T
+              (Specific, Measurable, Attainable, Relevant, Time-based) method
+              for inspiration.
             </p>
           </div>
           <div className="guide-item">
