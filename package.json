@@ -4,7 +4,7 @@
   "description": "Short-term goal tracker based on the Self Journal",
   "main": "app.js",
   "scripts": {
-    "start": "node cd api/app.js",
+    "start": "node api/app.js",
     "build": "cd client/ && npm install && npm run build"
   },
   "cacheDirectories": [
