@@ -9,7 +9,7 @@ function Navigation(props) {
   return (
     <header>
       <Link to={authUser ? '/goals' : ''} className="logo">
-        Goal Tracker
+        Goal Pad
       </Link>
       <nav>
         {/* If user is logged in */}
