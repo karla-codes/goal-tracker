@@ -2,7 +2,6 @@
   "name": "goal-tracker-api",
   "version": "1.0.0",
   "description": "Short-term goal tracker based on the Self Journal",
-  "main": "app.js",
   "scripts": {
     "start": "node api/app.js",
     "build": "cd client/ && npm install && npm run build"
