@@ -26,12 +26,10 @@ function DeleteGoal(props) {
           <p>Are you sure you want to delete this goal?</p>
 
           <form onSubmit={handleSubmit}>
-            <button className="delete-btn button" type="submit">
+            <button className="button" type="submit">
               Delete
             </button>
-            <Link className="cancel-btn button" to={`/goals/${id}`}>
-              Cancel
-            </Link>
+            <Link to={`/goals/${id}`}>Cancel</Link>
           </form>
         </div>
       </main>
