@@ -3,8 +3,7 @@
   "version": "1.0.0",
   "description": "Short-term goal tracker based on the Self Journal",
   "scripts": {
-    "start": "node api/app.js",
-    "heroku-postbuild": "cd client/ && npm install && npm run build"
+    "start": "node api/app.js"
   },
   "dependencies": {
     "basic-auth": "^2.0.1",
