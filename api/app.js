@@ -28,7 +28,7 @@ app.use(express.json());
 app.use('/api', router);
 
 app.use(function (req, res) {
-  res.sendFile(path.join(__dirname, '/client/build'));
+  res.sendFile(path.join('/client/build'));
 });
 
 // view engine setup
