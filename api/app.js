@@ -19,7 +19,7 @@ db.on('error', err => {
 });
 
 // serve static files
-app.use(express.static(__dirname + '/client/build'));
+app.use(express.static('/client/build'));
 // enables all CORS requests
 app.use(cors());
 // parses all incoming requests with JSON
