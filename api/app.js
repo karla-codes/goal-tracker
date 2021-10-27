@@ -2,7 +2,7 @@ const express = require('express');
 const router = require('./routes');
 const mongoose = require('mongoose');
 
-const mongoDB = `mongodb+srv://admin:${process.env.SECRET}@goal-tracker.zfcew.mongodb.net/goal-tracker-db?retryWrites=true&w=majority`;
+const mongoDB = process.env.MONGODB_URI;
 const cors = require('cors');
 
 const app = express();
