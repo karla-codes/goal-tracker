@@ -4,7 +4,7 @@
   "description": "Short-term goal tracker based on the Self Journal",
   "scripts": {
     "start": "node api/app.js",
-    "heroku-postbuild": "cd client/ && npm install && npm run build"
+    "build": "cd client/ && npm install && npm run build"
   },
   "cacheDirectories": [
     "node_modules",
