@@ -18,13 +18,17 @@ db.on('error', err => {
 });
 
 // serve static files
-app.use(express.static(__dirname + '/public'));
+app.use(express.static('/client/build'));
 // enables all CORS requests
 app.use(cors());
 // parses all incoming requests with JSON
 app.use(express.json());
 
 app.use('/api', router);
+
+app.use(function (req, res) {
+  res.sendFile(path.join(__dirname, '../client/build'));
+});
 
 // view engine setup
 app.set('view engine', 'pug');
