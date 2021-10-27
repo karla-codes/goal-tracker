@@ -1,6 +1,7 @@
 const express = require('express');
 const router = require('./routes');
 const mongoose = require('mongoose');
+const path = require('path');
 
 const mongoDB = process.env.MONGODB_URI;
 const cors = require('cors');
