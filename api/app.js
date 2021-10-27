@@ -19,7 +19,7 @@ db.on('error', err => {
 });
 
 // serve static files
-app.use(express.static('../client/build'));
+app.use(express.static('client/build'));
 // enables all CORS requests
 app.use(cors());
 // parses all incoming requests with JSON
@@ -28,7 +28,7 @@ app.use(express.json());
 app.use('/api', router);
 
 app.use(function (req, res) {
-  res.sendFile('../client/build');
+  res.sendFile('client/build', { root: '/' });
 });
 
 // view engine setup
