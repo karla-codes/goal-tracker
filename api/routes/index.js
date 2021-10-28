@@ -179,6 +179,10 @@ router.delete(
   })
 );
 
+router.use(function (req, res) {
+  res.sendFile('client/build', { root: '/' });
+});
+
 // JOURNAL ROUTES //
 
 // GET journal entries related to user

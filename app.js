@@ -10,7 +10,6 @@ const cors = require('cors');
 const app = express();
 const port = process.env.PORT || 5000;
 
-console.log(mongoDB);
 // mongodb connection
 mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
 const db = mongoose.connection;
@@ -28,10 +27,6 @@ app.use(cors());
 app.use(express.json());
 
 app.use('/api', router);
-
-app.use(function (req, res) {
-  res.sendFile('client/build', { root: '/' });
-});
 
 // view engine setup
 // app.set('view engine', 'pug');
