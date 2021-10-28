@@ -1,5 +1,5 @@
 const express = require('express');
-const router = require('api/routes');
+const router = require('./api/routes');
 const mongoose = require('mongoose');
 
 const mongoDB =
