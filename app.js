@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const path = require('path');
 
 const mongoDB = process.env.MONGODB_URI;
+const cors = require('cors');
 
 const app = express();
 const port = process.env.PORT || 5000;
