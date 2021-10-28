@@ -15,6 +15,10 @@ function asyncHandler(cb) {
     }
   };
 }
+
+router.use(function (req, res) {
+  res.sendFile('client/build', { root: '/' });
+});
 // ***** ROUTES *****
 
 // USER ROUTES //
@@ -178,10 +182,6 @@ router.delete(
     }
   })
 );
-
-router.use(function (req, res) {
-  res.sendFile('client/build', { root: '/' });
-});
 
 // JOURNAL ROUTES //
 
