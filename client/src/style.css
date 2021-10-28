@@ -86,7 +86,7 @@ header nav a {
   margin-top: 10px;
 }
 
-.button {
+button.button {
   font-size: 1.25rem;
   font-family: inherit;
   height: 3.625rem;
@@ -94,7 +94,9 @@ header nav a {
   background-color: transparent;
   padding: 0;
   cursor: pointer;
+}
 
+.button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -102,13 +104,9 @@ header nav a {
   border: 2px solid #000;
   border-radius: 5px;
   box-shadow: 3px 3px 1px #000;
-  /* width: max-content; */
-  height: max-content;
+  min-width: 10ch;
+  min-height: 44px;
   padding: 1rem;
-
-  @media screen and (-ms-high-contrast: active) {
-    border: 2px solid currentcolor;
-  }
 }
 
 /*********************************************************************
@@ -576,6 +574,12 @@ Goal Detail
 /* .quote p {
   justify-self: center;
 } */
+
+@media screen and (-ms-high-contrast: active) {
+  .button {
+    border: 2px solid currentcolor;
+  }
+}
 
 @media screen and (min-width: 620px) {
   .detail-nav {
