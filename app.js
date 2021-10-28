@@ -1,6 +1,7 @@
 const express = require('express');
 const router = require('./api/routes');
 const mongoose = require('mongoose');
+const path = require('path');
 
 const mongoDB =
   process.env.MONGODB_URI ||
@@ -9,6 +10,7 @@ const cors = require('cors');
 
 const app = express();
 const port = process.env.PORT || 5000;
+const clientBuildPath = path.join(__dirname, './client/build');
 
 // mongodb connection
 mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
@@ -20,7 +22,7 @@ db.on('error', err => {
 });
 
 // serve static files
-app.use(express.static('client/build'));
+app.use(express.static(path.join(clientBuildPath)));
 // enables all CORS requests
 app.use(cors());
 // parses all incoming requests with JSON
@@ -32,8 +34,8 @@ app.use('/api', router);
 // app.set('view engine', 'pug');
 // app.set('views', __dirname + '/views');
 
-app.get('/', (req, res) => {
-  res.json('Welcome to the Goal Tracker API!');
+app.get('*', (req, res) => {
+  res.sendFile(path.join(clientBuildPath, 'index.html'));
 });
 
 // 404 error handler
