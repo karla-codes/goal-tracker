@@ -3,12 +3,13 @@ const router = require('./api/routes');
 const mongoose = require('mongoose');
 const path = require('path');
 
-const mongoDB = process.env.MONGODB_URI;
+const mongoDB =
+  process.env.MONGODB_URI ||
+  'mongodb+srv://admin:C3kvm7k9EUhDrdXl@goal-tracker.zfcew.mongodb.net/goal-tracker-db?retryWrites=true&w=majority';
 const cors = require('cors');
 
 const app = express();
 const port = process.env.PORT || 5000;
-const clientBuildPath = path.join(__dirname, './client/build');
 
 // mongodb connection
 mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
@@ -20,7 +21,7 @@ db.on('error', err => {
 });
 
 // serve static files
-app.use(express.static(path.join(clientBuildPath)));
+app.use(express.static(path.join(__dirname, 'client/build')));
 // enables all CORS requests
 app.use(cors());
 // parses all incoming requests with JSON
@@ -28,12 +29,8 @@ app.use(express.json());
 
 app.use('/api', router);
 
-// view engine setup
-// app.set('view engine', 'pug');
-// app.set('views', __dirname + '/views');
-
 app.get('*', (req, res) => {
-  res.sendFile(path.join(clientBuildPath, 'index.html'));
+  res.sendFile(path.join(__dirname + 'client/build/index.html'));
 });
 
 // 404 error handler
