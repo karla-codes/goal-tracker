@@ -1,14 +1,16 @@
 const express = require('express');
-const router = require('./routes');
+const router = require('./api/routes');
 const mongoose = require('mongoose');
-const path = require('path');
 
-const mongoDB = process.env.MONGODB_URI;
+const mongoDB =
+  process.env.MONGODB_URI ||
+  'mongodb+srv://admin:C3kvm7k9EUhDrdXl@goal-tracker.zfcew.mongodb.net/goal-tracker-db?retryWrites=true&w=majority';
 const cors = require('cors');
 
 const app = express();
 const port = process.env.PORT || 5000;
 
+console.log(mongoDB);
 // mongodb connection
 mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
 const db = mongoose.connection;
@@ -32,8 +34,8 @@ app.use(function (req, res) {
 });
 
 // view engine setup
-app.set('view engine', 'pug');
-app.set('views', __dirname + '/views');
+// app.set('view engine', 'pug');
+// app.set('views', __dirname + '/views');
 
 app.get('/', (req, res) => {
   res.json('Welcome to the Goal Tracker API!');
