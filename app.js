@@ -3,9 +3,7 @@ const router = require('./api/routes');
 const mongoose = require('mongoose');
 const path = require('path');
 
-const mongoDB =
-  process.env.MONGODB_URI ||
-  'mongodb+srv://admin:C3kvm7k9EUhDrdXl@goal-tracker.zfcew.mongodb.net/goal-tracker-db?retryWrites=true&w=majority';
+const mongoDB = process.env.MONGODB_URI;
 const cors = require('cors');
 
 const app = express();
