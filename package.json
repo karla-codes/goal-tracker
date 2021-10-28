@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Short-term goal tracker based on the Self Journal",
   "scripts": {
-    "start": "node api/app.js"
+    "start": "node app.js"
   },
   "cacheDirectories": [
     "node_modules",
