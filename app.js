@@ -1,12 +1,9 @@
 const express = require('express');
-const router = require('./api/routes');
+const router = require('./routes');
 const mongoose = require('mongoose');
 const path = require('path');
 
-const mongoDB =
-  process.env.MONGODB_URI ||
-  'mongodb+srv://admin:C3kvm7k9EUhDrdXl@goal-tracker.zfcew.mongodb.net/goal-tracker-db?retryWrites=true&w=majority';
-const cors = require('cors');
+const mongoDB = process.env.MONGODB_URI;
 
 const app = express();
 const port = process.env.PORT || 5000;
