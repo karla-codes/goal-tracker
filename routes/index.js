@@ -180,9 +180,6 @@ router.delete(
   })
 );
 
-router.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname + 'client/build/index.html'));
-});
 // JOURNAL ROUTES //
 
 // GET journal entries related to user
