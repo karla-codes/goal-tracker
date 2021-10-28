@@ -15,8 +15,6 @@ function Dashboard(props) {
         .getGoals(authUser)
         .then(data => data)
         .catch(err => console.log(err));
-      // save the returned info and pass to Goal component
-      console.log(userGoals);
       setGoals(userGoals);
     };
     fetchData();
