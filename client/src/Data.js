@@ -2,7 +2,7 @@
 
 class Data {
   api(path, method, body = null, requiresAuth = false, credentials = null) {
-    const url = 'http://localhost:5000/api' + path;
+    const url = 'http://localhost:' + process.env.PORT || 5000 + '/api' + path;
 
     // api request config
     const options = {
