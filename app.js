@@ -29,10 +29,6 @@ app.use(express.json());
 
 app.use('/api', router);
 
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname + 'client/build/index.html'));
-});
-
 // 404 error handler
 app.use((req, res, next) => {
   const err = new Error('Uh oh! Looks like this page does not exist.');
@@ -58,6 +54,10 @@ app.use((err, req, res, next) => {
       message: err.message,
     });
   }
+});
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname + 'client/build/index.html'));
 });
 
 app.listen(port, () => {
