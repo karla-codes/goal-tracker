@@ -11,7 +11,9 @@ function Form(props) {
         type="submit"
         value={buttonText}
         name={buttonText}
-      />
+      >
+        {buttonText}
+      </button>
     </form>
   );
 }
