@@ -65,7 +65,8 @@ function UserSignUp(props) {
         .createUser(formValues)
         .then(errors => {
           if (errors) {
-            setErrors({ email: errors });
+            console.log(errors);
+            // setErrors({ server: errors });
           } else {
             console.log(
               `${formValues.fullName} is successfully signed up and authenticated!`
