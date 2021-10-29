@@ -9,6 +9,8 @@ function GoalDetail(props) {
   const { id } = useParams();
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+
     const fetchGoals = async () => {
       const fetchGoalDetails = async () => {
         const goalDetails = await actions.getGoalDetails(id).then(data => {

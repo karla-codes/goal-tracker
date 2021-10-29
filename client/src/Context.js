@@ -28,18 +28,6 @@ export const Provider = props => {
     },
   };
 
-  // const fetchData = async () => {
-  //   // use api request to fetch data
-  //   const userGoals = await data
-  //     .getGoals(authUser)
-  //     .then(data => data)
-  //     .catch(err => console.log(err));
-  //   // save the returned info and pass to Goal component
-  //   console.log(userGoals);
-  //   setGoals(userGoals);
-  // };
-  // fetchData();
-
   async function getGoalDetails(goalId) {
     const goalDetails = await data
       .getGoal(goalId, authUser)

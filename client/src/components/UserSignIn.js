@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import Form from './Form';
 
 function UserSignIn(props) {
@@ -10,6 +10,7 @@ function UserSignIn(props) {
   const [errors, setErrors] = useState({});
 
   const { context } = props;
+  const { authUser } = context;
 
   // Add form validation
   // Check if:
@@ -73,41 +74,46 @@ function UserSignIn(props) {
     }
   }
 
-  return (
-    <main>
-      <div className="form-wrapper">
-        <h1>Login</h1>
-        <Form
-          submit={handleSubmit}
-          buttonText="Login"
-          elements={() => (
-            <>
-              {errors.fetch && <span>{errors.fetch}</span>}
-              <label htmlFor="email">Email:</label>
-              <input
-                name="email"
-                id="email"
-                type="email"
-                onChange={handleChange}
-              ></input>
-              {errors.email && <span>{errors.email}</span>}
-              <label htmlFor="password">Password:</label>
-              <input
-                name="password"
-                id="password"
-                type="password"
-                onChange={handleChange}
-              ></input>
-              {errors.password && <span>{errors.password}</span>}
-            </>
-          )}
-        />
-        <p>
-          Don't have an account? Sign up <Link to="/signup">here</Link>!
-        </p>
-      </div>
-    </main>
-  );
+  if (authUser) {
+    console.log(authUser);
+    return <Redirect to="/goals" />;
+  } else {
+    return (
+      <main>
+        <div className="form-wrapper">
+          <h1>Login</h1>
+          <Form
+            submit={handleSubmit}
+            buttonText="Login"
+            elements={() => (
+              <>
+                {errors.fetch && <span>{errors.fetch}</span>}
+                <label htmlFor="email">Email:</label>
+                <input
+                  name="email"
+                  id="email"
+                  type="email"
+                  onChange={handleChange}
+                ></input>
+                {errors.email && <span>{errors.email}</span>}
+                <label htmlFor="password">Password:</label>
+                <input
+                  name="password"
+                  id="password"
+                  type="password"
+                  onChange={handleChange}
+                ></input>
+                {errors.password && <span>{errors.password}</span>}
+              </>
+            )}
+          />
+          <p>
+            Don't have an account? Sign up <Link to="/signup">here</Link>!
+          </p>
+        </div>
+      </main>
+    );
+  }
 }
 
 export default UserSignIn;
