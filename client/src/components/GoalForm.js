@@ -48,7 +48,6 @@ function GoalForm(props) {
           .createGoal(formValues, authUser)
           .then(data => {
             if (data) {
-              console.log(data);
               if (data.name === 'ValidationError') {
                 console.log(data);
                 setErrors(data.message);
