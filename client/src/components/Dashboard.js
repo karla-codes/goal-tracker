@@ -37,9 +37,7 @@ function Dashboard(props) {
       </div>
       {/* Add goals here */}
       <div className="goal-container">
-        {goals.map(goal => (
-          <Goal goal={goal} key={goal._id} />
-        ))}
+        {goals.map(goal => <Goal goal={goal} key={goal._id} />).reverse()}
       </div>
     </main>
   );
