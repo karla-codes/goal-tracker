@@ -479,15 +479,14 @@ Goal Detail
   border: 1px solid #000000;
   font-size: 1.125rem;
   background-color: #fbfdff;
-  height: 200px;
-  padding: 1rem 1rem 2rem;
+  min-height: 200px;
+  padding: 1rem 1.5rem 2rem;
 }
 
-.detail h2,
+/* .detail h2,
 .detail p {
   width: 85%;
-  margin: 0 auto;
-}
+} */
 
 .detail h2 {
   font-size: 1.5rem;
@@ -589,6 +588,18 @@ Goal Detail
 /* .quote p {
   justify-self: center;
 } */
+
+/*********************************************************************
+Delete Goal
+*********************************************************************/
+
+.delete-form {
+  margin-top: 2rem;
+}
+
+.delete-form a {
+  margin-left: 1.5rem;
+}
 
 @media screen and (-ms-high-contrast: active) {
   .button {
