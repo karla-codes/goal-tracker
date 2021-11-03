@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-// import JournalPage from './JournalPage';
+import ReactMarkdown from 'react-markdown';
 import DetailNav from './DetailNav';
 import { useParams } from 'react-router';
 
@@ -45,7 +45,9 @@ function GoalDetail(props) {
                 <div className="thumbtack-right"></div>
               </div>
               <h2>Motivations</h2>
-              <p>{goalDetails.motivations}</p>
+              <p>
+                <ReactMarkdown>{goalDetails.motivations}</ReactMarkdown>
+              </p>
             </div>
             <div className="detail">
               <div className="thumbtacks">
@@ -53,7 +55,9 @@ function GoalDetail(props) {
                 <div className="thumbtack-right"></div>
               </div>
               <h2>Progress Milestones</h2>
-              <p>{goalDetails.progressMilestones}</p>
+              <p>
+                <ReactMarkdown>{goalDetails.progressMilestones}</ReactMarkdown>
+              </p>
             </div>
             <div className="detail">
               <div className="thumbtacks">
@@ -61,7 +65,9 @@ function GoalDetail(props) {
                 <div className="thumbtack-right"></div>
               </div>
               <h2>Accountability</h2>
-              <p>{goalDetails.accountability}</p>
+              <p>
+                <ReactMarkdown>{goalDetails.accountability}</ReactMarkdown>
+              </p>
             </div>
           </div>
           <div className="quote-wrapper">
