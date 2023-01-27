@@ -100,7 +100,7 @@ button.button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background-color: #a58c40;
+  background-color: #928db3;
   border: 2px solid #000;
   border-radius: 5px;
   box-shadow: 3px 3px 1px #000;
@@ -110,8 +110,8 @@ button.button {
 }
 
 button.button:focus {
-  background-color: #423200;
-  color: #fffcf7;
+  background-color: #3f3777;
+  color: #ffffff;
 }
 
 /*********************************************************************
@@ -121,6 +121,7 @@ Login/Sign Up Form
 .form-wrapper {
   border: 1px solid rgb(0, 0, 0);
   border-radius: 10px;
+  /* background-color: #fff1de; */
   width: 100%;
   max-width: 420px;
   margin: 2rem auto;
@@ -208,7 +209,7 @@ Login/Sign Up Form
 }
 
 .link-button {
-  background-color: #a58c40;
+  background-color: #928db3;
   border: 2px solid #000;
   border-radius: 5px;
   box-shadow: 3px 3px 1px #000;
@@ -218,7 +219,7 @@ Login/Sign Up Form
 }
 
 .link-button:focus {
-  background-color: #423200;
+  background-color: #3f3777;
   color: #fffcf7;
 }
 
@@ -272,7 +273,8 @@ Goal Form
   display: grid;
   grid-gap: 4rem;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  margin-bottom: 4rem;
+  max-width: 112.5rem;
+  margin: 0 auto 4rem;
 }
 .goal-form h1 {
   font-size: 1.875rem;
@@ -284,7 +286,9 @@ Goal Form
   border: 2px solid #000000;
   background-color: #fff1de;
   width: 100%;
+  max-width: 37.5rem;
   height: fit-content;
+  margin: 0 auto;
   padding: 2rem;
 }
 
@@ -310,6 +314,8 @@ Goal Form
 
 .goal-form form {
   width: 100%;
+  max-width: 37.5rem;
+  margin: 0 auto;
 }
 
 .form-description {
@@ -435,42 +441,11 @@ Goal Detail
   font-size: clamp(1rem, 4vw + 1rem, 2.625rem);
 }
 
-.bulletin-board {
-  border: 10px solid silver;
-  background-image: radial-gradient(rgb(209, 163, 104) 35%, #b67b22 50%);
-  background-size: 5px 5px;
-  width: 100%;
-  margin: 0 auto;
-  max-width: 1080px;
-}
-
 .details-wrapper {
   display: grid;
   gap: 1.5rem;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  padding: 2rem;
-}
-
-.thumbtacks {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 1rem;
-}
-
-.thumbtack {
-  background-color: silver;
-  width: 16px;
-  height: 16px;
-  border-radius: 50%;
-  box-shadow: 1px 1px 4px rgb(85, 85, 85);
-}
-
-.thumbtack-right {
-  background-color: silver;
-  width: 16px;
-  height: 16px;
-  border-radius: 50%;
-  box-shadow: 1px 1px 4px rgb(85, 85, 85);
+  grid-template-columns: repeat(auto-fit, minmax(245px, 1fr));
+  width: 100%;
 }
 
 .detail {
@@ -480,19 +455,13 @@ Goal Detail
   font-size: 1.125rem;
   background-color: #fbfdff;
   min-height: 200px;
-  padding: 1rem 1.5rem 2rem;
+  padding: 2rem 1.5rem;
 }
-
-/* .detail h2,
-.detail p {
-  width: 85%;
-} */
 
 .detail h2 {
   font-size: 1.5rem;
   font-weight: 500;
   margin-bottom: 8px;
-  /* text-decoration: 2px underline blue; */
 }
 
 .quote-wrapper {
@@ -502,11 +471,9 @@ Goal Detail
 }
 
 .quote-wrapper h2 {
-  /* font-family: 'Balsamiq Sans', cursive; */
   text-transform: uppercase;
   font-size: clamp(1.5rem, 4vw + 1rem, 3rem);
   text-align: center;
-  /* background-color: black; */
   color: rgb(253, 209, 31);
   text-shadow: 3px 2px 1px #1e1e1e;
   margin-bottom: 1rem;
@@ -520,74 +487,7 @@ Goal Detail
   max-width: 680px;
   margin: 0 auto;
   padding: 2rem;
-
-  /* clip-path: polygon(
-    0px 0px,
-    5vw 3vw,
-    10vw 0px,
-    15vw 10vw,
-    20vw 0px,
-    25vw 10vw,
-    30vw 0px,
-    35vw 10vw,
-    40vw 0px,
-    45vw 10vw,
-    50vw 0px,
-    55vw 10vw,
-    60vw 0vw,
-    65vw 10vw,
-    70vw 0vw,
-    75vw 10vw,
-    80vw 0vw,
-    85vw 10vw,
-    90vw 0vw,
-    95vw 10vw,
-    100% 0px,
-    95% 10%,
-    100% 20%,
-    95% 30%,
-    100% 40%,
-    95% 50%,
-    100% 60%,
-    95% 70%,
-    100% 80%,
-    95% 90%,
-    100% 100%,
-    95% 90%,
-    90% 100%,
-    85% 90%,
-    80% 100%,
-    75% 90%,
-    70% 100%,
-    65% 90%,
-    60% 100%,
-    55% 90%,
-    50% 100%,
-    45% 90%,
-    40% 100%,
-    35% 90%,
-    30% 100%,
-    25% 90%,
-    20% 100%,
-    15% 90%,
-    10% 100%,
-    5% 90%,
-    0% 100%,
-    5% 90%,
-    0% 80%,
-    5% 70%,
-    0% 60%,
-    5% 50%,
-    0% 40%,
-    5% 30%,
-    0% 20%,
-    5% 10%
-  ); */
 }
-
-/* .quote p {
-  justify-self: center;
-} */
 
 /*********************************************************************
 Delete Goal
