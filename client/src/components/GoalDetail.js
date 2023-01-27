@@ -37,46 +37,46 @@ function GoalDetail(props) {
           <p>{goalDetails.goal}</p>
           <span className="goal-category">{goalDetails.category}</span>
         </div>
-        <div className="bulletin-board">
-          <div className="details-wrapper">
-            <div className="detail">
-              <div className="thumbtacks">
-                <div className="thumbtack"></div>
-                <div className="thumbtack-right"></div>
-              </div>
-              <h2>Motivations</h2>
-              <p>
-                <ReactMarkdown>{goalDetails.motivations}</ReactMarkdown>
-              </p>
+        {/* <div className="bulletin-board"> */}
+        <div className="details-wrapper">
+          <div className="detail">
+            <div className="thumbtacks">
+              <div className="thumbtack"></div>
+              <div className="thumbtack-right"></div>
             </div>
-            <div className="detail">
-              <div className="thumbtacks">
-                <div className="thumbtack"></div>
-                <div className="thumbtack-right"></div>
-              </div>
-              <h2>Progress Milestones</h2>
-              <p>
-                <ReactMarkdown>{goalDetails.progressMilestones}</ReactMarkdown>
-              </p>
-            </div>
-            <div className="detail">
-              <div className="thumbtacks">
-                <div className="thumbtack"></div>
-                <div className="thumbtack-right"></div>
-              </div>
-              <h2>Accountability</h2>
-              <p>
-                <ReactMarkdown>{goalDetails.accountability}</ReactMarkdown>
-              </p>
-            </div>
+            <h2>Motivations</h2>
+            <p>
+              <ReactMarkdown>{goalDetails.motivations}</ReactMarkdown>
+            </p>
           </div>
-          <div className="quote-wrapper">
-            <h2>Motivational Quote Of The Day</h2>
-            <div className="quote">
-              <p>This is where the motivational quote will go.</p>
+          <div className="detail">
+            <div className="thumbtacks">
+              <div className="thumbtack"></div>
+              <div className="thumbtack-right"></div>
             </div>
+            <h2>Progress Milestones</h2>
+            <p>
+              <ReactMarkdown>{goalDetails.progressMilestones}</ReactMarkdown>
+            </p>
+          </div>
+          <div className="detail">
+            <div className="thumbtacks">
+              <div className="thumbtack"></div>
+              <div className="thumbtack-right"></div>
+            </div>
+            <h2>Accountability</h2>
+            <p>
+              <ReactMarkdown>{goalDetails.accountability}</ReactMarkdown>
+            </p>
           </div>
         </div>
+        {/* <div className="quote-wrapper">
+          <h2>Motivational Quote Of The Day</h2>
+          <div className="quote">
+            <p>This is where the motivational quote will go.</p>
+          </div>
+        </div> */}
+        {/* </div> */}
       </div>
       {/* <div className="goal-journal">
         <div className="goal-nav">
