@@ -83,6 +83,7 @@ function GoalForm(props) {
   function handleChange(e) {
     const { name, value } = e.target;
     setFormValues({ ...formValues, [name]: value });
+    sessionStorage.setItem('formValues', formValues);
   }
 
   return (
@@ -117,6 +118,7 @@ function GoalForm(props) {
         </div>
         <form onSubmit={handleSubmit}>
           <p className="form-description">Enter your goal details below:</p>
+          <p>Supports markdown</p>
           <div className="validation-errors">
             <ul>
               {errors
