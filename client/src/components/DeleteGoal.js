@@ -1,24 +1,42 @@
-import React from 'react';
-import { Redirect, useParams } from 'react-router';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from "react"
+import { Redirect, useParams } from "react-router"
+import { Link } from "react-router-dom"
 
 function DeleteGoal(props) {
-  const { id } = useParams();
-  const { context } = props;
-  const { authUser, goalDetails } = context;
+  const { id } = useParams()
+  const { context } = props
+  const { authUser } = context
+  const [goalId, setGoalId] = useState({})
+
+  useEffect(() => {
+    const currentGoal = sessionStorage.getItem("currentGoal")
+    const goalId = JSON.parse(currentGoal)._id
+    if (id === goalId) {
+      setGoalId(goalId)
+    }
+  }, [id])
 
   function handleSubmit(e) {
-    e.preventDefault();
+    e.preventDefault()
     context.data
       .deleteGoal(id, authUser)
-      .then(() => props.history.push('/goals'))
+      .then(async () => {
+        const userGoals = await context.data
+          .getGoals(authUser)
+          .then(data => data)
+          .catch(err => console.log(err))
+        sessionStorage.setItem("goals", JSON.stringify(userGoals))
+      })
+      .then(() => {
+        props.history.push("/goals")
+      })
       .catch(err => {
-        console.log(err);
-        props.history.push('/errors');
-      });
+        console.log(err)
+        props.history.push("/errors")
+      })
   }
 
-  if (id === goalDetails._id) {
+  if (goalId) {
     return (
       <main>
         <div className="delete-goal">
@@ -33,10 +51,10 @@ function DeleteGoal(props) {
           </form>
         </div>
       </main>
-    );
+    )
   } else {
-    return <Redirect to="/notfound" />;
+    return <Redirect to="/notfound" />
   }
 }
 
-export default DeleteGoal;
+export default DeleteGoal

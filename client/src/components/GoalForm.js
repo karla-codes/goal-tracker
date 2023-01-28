@@ -1,89 +1,105 @@
-import React, { useEffect, useState } from 'react';
-import { Link, withRouter } from 'react-router-dom';
+import React, { useEffect, useState } from "react"
+import { Link, withRouter } from "react-router-dom"
 
 function GoalForm(props) {
-  const { headerText, context, id } = props;
-  const { authUser, goalDetails } = context;
+  const { headerText, context, id } = props
+  const { authUser } = context
 
   const [formValues, setFormValues] = useState({
-    goal: '',
-    motivations: '',
-    progressMilestones: '',
-    accountability: '',
-    category: '',
-  });
-  const [errors, setErrors] = useState({});
+    goal: "",
+    motivations: "",
+    progressMilestones: "",
+    accountability: "",
+    category: "",
+  })
+  const [errors, setErrors] = useState({})
 
   useEffect(() => {
-    if (goalDetails && headerText === 'Edit Goal') {
-      setFormValues(goalDetails);
+    const currentGoal = sessionStorage.getItem("currentGoal")
+
+    if (currentGoal && headerText === "Edit Goal") {
+      setFormValues(JSON.parse(currentGoal))
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [])
 
   function validateForm(values) {
-    let errors = {};
+    let errors = {}
     if (!values.goal) {
-      errors.goal = 'Cannot leave goal blank';
+      errors.goal = "Cannot leave goal blank"
     }
 
     if (!values.category) {
-      errors.category = 'Please select a category';
+      errors.category = "Please select a category"
     }
 
-    setErrors(errors);
-    return errors;
+    setErrors(errors)
+    return errors
   }
 
   function handleSubmit(e) {
-    e.preventDefault();
-    const validate = validateForm(formValues);
-    console.log(validate);
+    e.preventDefault()
+    const validate = validateForm(formValues)
     if (validate.goal || validate.category) {
-      setErrors(validate);
+      console.log({ errors: validate })
+      setErrors(validate)
     } else {
-      console.log('There are no errors!');
-      if (headerText === 'Create Goal') {
+      console.log("There are no errors!")
+      if (headerText === "Create Goal") {
         context.data
           .createGoal(formValues, authUser)
           .then(data => {
             if (data) {
-              if (data.name === 'ValidationError') {
-                console.log(data);
-                setErrors(data.message);
+              if (data.name === "ValidationError") {
+                console.log(data)
+                setErrors(data.message)
               } else if (data.error) {
-                console.log(data);
-                setErrors({ error: data.message });
+                console.log(data)
+                setErrors({ error: data.message })
               } else {
-                props.history.push('/notfound');
+                props.history.push("/notfound")
               }
-            } else {
-              props.history.push('/goals');
             }
           })
-          .catch(err => console.log(err));
+          .then(async () => {
+            const userGoals = await context.data
+              .getGoals(authUser)
+              .then(data => data)
+              .catch(err => console.log(err))
+            sessionStorage.setItem("goals", JSON.stringify(userGoals))
+
+            props.history.push("/goals")
+          })
+          .catch(err => console.log(err))
       } else {
+        sessionStorage.setItem("currentGoal", JSON.stringify(formValues))
+
         context.data
           .updateGoal(formValues, id, authUser)
-          .then(data => {
+          .then(async data => {
             if (!data) {
-              props.history.push(`/goals/${id}`);
+              const userGoals = await context.data
+                .getGoals(authUser)
+                .then(data => data)
+                .catch(err => console.log(err))
+              sessionStorage.setItem("goals", JSON.stringify(userGoals))
+
+              props.history.push(`/goals/${id}`)
             } else if (data.message) {
-              props.history.push('/notfound');
+              props.history.push("/notfound")
             }
           })
           .catch(err => {
-            console.log(err);
-            props.history.push('/errors');
-          });
+            console.log(err)
+            props.history.push("/errors")
+          })
       }
     }
   }
 
   function handleChange(e) {
-    const { name, value } = e.target;
-    setFormValues({ ...formValues, [name]: value });
-    sessionStorage.setItem('formValues', formValues);
+    const { name, value } = e.target
+    setFormValues({ ...formValues, [name]: value })
   }
 
   return (
@@ -95,17 +111,13 @@ function GoalForm(props) {
           <div className="guide-item">
             <h3>Goal:</h3>
             <p>
-              Define your goal. If you’re feeling stuck, try using the S.M.A.R.T
-              (Specific, Measurable, Attainable, Relevant, Time-based) method
-              for inspiration.
+              Define your goal. If you’re feeling stuck, try using the S.M.A.R.T (Specific,
+              Measurable, Attainable, Relevant, Time-based) method for inspiration.
             </p>
           </div>
           <div className="guide-item">
             <h3>Motivations:</h3>
-            <p>
-              Why is this goal important? What will you get out of achieving
-              this goal?
-            </p>
+            <p>Why is this goal important? What will you get out of achieving this goal?</p>
           </div>
           <div className="guide-item">
             <h3>Progress Milestones:</h3>
@@ -117,15 +129,18 @@ function GoalForm(props) {
           </div>
         </div>
         <form onSubmit={handleSubmit}>
-          <p className="form-description">Enter your goal details below:</p>
-          <p>Supports markdown</p>
+          <p className="form-description">
+            Enter your goal details below: <br />
+          </p>
+          <span className="markdown-note">*Text fields that support markdown</span>
+
           <div className="validation-errors">
             <ul>
               {errors
                 ? Object.values(errors).map((err, i) => {
-                    return <li key={i}>{err}</li>;
+                    return <li key={i}>{err}</li>
                   })
-                : ''}
+                : ""}
             </ul>
           </div>
           <div className="form-textfields">
@@ -142,7 +157,7 @@ function GoalForm(props) {
               ></textarea>
             </p>
             <p>
-              <label htmlFor="motivations">Motivations</label>
+              <label htmlFor="motivations">Motivations*</label>
               <textarea
                 name="motivations"
                 id="motivations"
@@ -154,7 +169,7 @@ function GoalForm(props) {
               ></textarea>
             </p>
             <p>
-              <label htmlFor="progressMilestones">Progress Milestones</label>
+              <label htmlFor="progressMilestones">Progress Milestones*</label>
               <textarea
                 name="progressMilestones"
                 id="progressMilestones"
@@ -166,7 +181,7 @@ function GoalForm(props) {
               ></textarea>
             </p>
             <p>
-              <label htmlFor="accountability">Accountability</label>
+              <label htmlFor="accountability">Accountability*</label>
               <textarea
                 name="accountability"
                 id="accountability"
@@ -200,7 +215,7 @@ function GoalForm(props) {
             <button className="button" type="submit">
               Submit
             </button>
-            {headerText === 'Edit Goal' ? (
+            {headerText === "Edit Goal" ? (
               <Link to={`/goals/${id}`}>Cancel</Link>
             ) : (
               <Link to="/goals">Cancel</Link>
@@ -209,7 +224,7 @@ function GoalForm(props) {
         </form>
       </div>
     </main>
-  );
+  )
 }
 
-export default withRouter(GoalForm);
+export default withRouter(GoalForm)
