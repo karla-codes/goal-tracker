@@ -47,7 +47,7 @@ a {
 }
 
 body {
-  font-family: 'Work Sans', sans-serif;
+  font-family: "Work Sans", sans-serif;
   width: 90%;
   margin: 2rem auto 0;
 }
@@ -100,7 +100,7 @@ button.button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background-color: #928db3;
+  background-color: #f8deff;
   border: 2px solid #000;
   border-radius: 5px;
   box-shadow: 3px 3px 1px #000;
@@ -209,7 +209,7 @@ Login/Sign Up Form
 }
 
 .link-button {
-  background-color: #928db3;
+  background-color: #f8deff;
   border: 2px solid #000;
   border-radius: 5px;
   box-shadow: 3px 3px 1px #000;
@@ -238,9 +238,10 @@ Login/Sign Up Form
   font-size: 1.5rem;
   border: 2px solid #000000;
   padding: 1.5rem;
+  background-color: #fffcde;
 }
 
-.goal:nth-of-type(4n-3) {
+/* .goal:nth-of-type(4n-3) {
   background-color: #def2ff;
 }
 .goal:nth-of-type(4n-2) {
@@ -251,7 +252,7 @@ Login/Sign Up Form
 }
 .goal:nth-of-type(4n) {
   background-color: #fffcde;
-}
+} */
 
 .goal h2 {
   font-size: 1.5rem;
@@ -319,8 +320,16 @@ Goal Form
 }
 
 .form-description {
-  margin-bottom: 2rem;
+  margin-bottom: 1em;
+  font-weight: 600;
   text-decoration: underline;
+}
+
+.markdown-note {
+  color: #434343;
+  font-size: 14px;
+  margin-bottom: 8px;
+  text-decoration: none;
 }
 
 .form-textfields {
@@ -387,6 +396,15 @@ Goal Form
   justify-content: space-between;
   align-items: center;
   width: 200px;
+}
+
+.validation-errors {
+  color: red;
+  margin-bottom: 1em;
+}
+
+.validation-errors li:not(:last-of-type) {
+  margin-bottom: 8px;
 }
 
 /*********************************************************************
@@ -465,7 +483,7 @@ Goal Detail
 }
 
 .quote-wrapper {
-  font-family: 'Fredoka One', cursive;
+  font-family: "Fredoka One", cursive;
   padding: 2rem;
   margin-bottom: 2rem;
 }
