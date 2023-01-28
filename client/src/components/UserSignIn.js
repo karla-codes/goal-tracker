@@ -1,16 +1,16 @@
-import React, { useState } from 'react';
-import { Link, Redirect } from 'react-router-dom';
-import Form from './Form';
+import React, { useState } from "react"
+import { Link, Redirect } from "react-router-dom"
+import Form from "./Form"
 
 function UserSignIn(props) {
   // track state for:
   // - email
   // - password
-  const [formValues, setFormValues] = useState({ email: '', password: '' });
-  const [errors, setErrors] = useState({});
+  const [formValues, setFormValues] = useState({ email: "", password: "" })
+  const [errors, setErrors] = useState({})
 
-  const { context } = props;
-  const { authUser } = context;
+  const { context } = props
+  const { authUser } = context
 
   // Add form validation
   // Check if:
@@ -19,23 +19,23 @@ function UserSignIn(props) {
   // 3. password input is empty
   // 4. password has min 8 characters (regex)
   function formValidation(values) {
-    let errors = {};
-    const regex = /[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+/;
+    let errors = {}
+    const regex = /[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+/
 
     if (!values.email) {
-      errors.email = 'Cannot leave email blank';
+      errors.email = "Cannot leave email blank"
     } else if (!regex.test(values.email)) {
-      errors.email = 'Invalid email format';
+      errors.email = "Invalid email format"
     }
 
     if (!values.password) {
-      errors.password = 'Cannot leave password blank';
+      errors.password = "Cannot leave password blank"
     } else if (values.password.length < 8) {
-      errors.password = 'Password needs to be more than 8 characters long';
+      errors.password = "Password needs to be more than 8 characters long"
     }
 
-    setErrors(errors);
-    return errors;
+    setErrors(errors)
+    return errors
   }
 
   /**
@@ -43,17 +43,17 @@ function UserSignIn(props) {
    *
    */
   function handleChange(e) {
-    const { name, value } = e.target;
-    setFormValues({ ...formValues, [name]: value });
+    const { name, value } = e.target
+    setFormValues({ ...formValues, [name]: value })
   }
 
   function handleSubmit(e) {
-    e.preventDefault();
-    const { from } = props.history.state || { from: '/goals' };
-    const validate = formValidation(formValues);
+    e.preventDefault()
+    const { from } = props.history.state || { from: "/goals" }
+    const validate = formValidation(formValues)
 
     if (validate.email || validate.password) {
-      setErrors(validate);
+      setErrors(validate)
     } else {
       // run sign in functionality with API helper
       // - GET user request
@@ -62,21 +62,20 @@ function UserSignIn(props) {
         .signIn(formValues)
         .then(user => {
           if (user === null) {
-            setErrors({ fetch: 'Sign in was unsuccessfull' });
+            setErrors({ fetch: "Sign in was unsuccessfull" })
           } else {
-            props.history.push(from);
+            props.history.push(from)
           }
         })
         .catch(err => {
-          console.log(err);
-          props.push.history('/errors');
-        });
+          console.log(err)
+          props.history.push("/errors")
+        })
     }
   }
 
   if (authUser) {
-    console.log(authUser);
-    return <Redirect to="/goals" />;
+    return <Redirect to="/goals" />
   } else {
     return (
       <main>
@@ -89,12 +88,7 @@ function UserSignIn(props) {
               <>
                 {errors.fetch && <span>{errors.fetch}</span>}
                 <label htmlFor="email">Email:</label>
-                <input
-                  name="email"
-                  id="email"
-                  type="email"
-                  onChange={handleChange}
-                ></input>
+                <input name="email" id="email" type="email" onChange={handleChange}></input>
                 {errors.email && <span>{errors.email}</span>}
                 <label htmlFor="password">Password:</label>
                 <input
@@ -112,8 +106,8 @@ function UserSignIn(props) {
           </p>
         </div>
       </main>
-    );
+    )
   }
 }
 
-export default UserSignIn;
+export default UserSignIn
