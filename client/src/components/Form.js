@@ -12,8 +12,6 @@ function Form(props) {
 
   function handleSubmit(e) {
     e.preventDefault()
-
-    // setClicks(clicks + 1)
     modal.classList.remove("open")
   }
 
@@ -23,9 +21,28 @@ function Form(props) {
 
       <form onSubmit={submit}>
         {elements()}
-        <button className="button" type="submit" value={buttonText} name={buttonText}>
-          {buttonText}
-        </button>
+        {/* Disable sign up for demo */}
+        {buttonText === "Sign Up" ? (
+          <>
+            <button
+              className="button disabled"
+              type="submit"
+              value={buttonText}
+              name={buttonText}
+              title="Account creation is disabled for demo purposes"
+              disabled
+            >
+              {buttonText}
+            </button>
+            <div className="tooltip">
+              <span className="tooltip-text">Account creation is disabled for demo purposes</span>
+            </div>
+          </>
+        ) : (
+          <button className="button" type="submit" value={buttonText} name={buttonText}>
+            {buttonText}
+          </button>
+        )}
       </form>
     </>
   )
