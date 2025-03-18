@@ -18,9 +18,6 @@ After graduating from Treehouse's Full Stack Javascript techdegree, I was really
   - [bcrypt](https://www.npmjs.com/package/bcrypt) for password hashing
   - [react-markdown](https://www.npmjs.com/package/react-markdown)
 
-## How to use
-
-Goal Pad is live at [https://goal-pad.fly.dev/](https://goal-pad.fly.dev/). You can check out the demo account with email: **demo@email.com** and password: **password**. You can create/update/delete goals. The demo version does not let you create an account.
 
 ### Overview
 
